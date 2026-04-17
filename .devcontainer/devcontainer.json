@@ -6,7 +6,6 @@
       "extraNixConfig": "experimental-features = nix-command flakes"
     }
   },
-  "onCreateCommand": "bash .devcontainer/setup.sh",
   "customizations": {
     "vscode": {
       "extensions": [

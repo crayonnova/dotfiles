@@ -6,6 +6,7 @@
       "extraNixConfig": "experimental-features = nix-command flakes"
     }
   },
+  "onCreateCommand": "nix run home-manager -- switch --flake .#vscode@codespaces -b hmbackup",
   "customizations": {
     "vscode": {
       "extensions": [

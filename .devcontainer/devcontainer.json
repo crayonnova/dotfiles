@@ -9,18 +9,19 @@
   "onCreateCommand": "nix run home-manager -- switch --flake .#vscode@codespaces -b hmbackup",
   "updateContentCommand": "nvim --headless '+Lazy! install' +qa",
   "customizations": {
-  "vscode": {
-    "extensions": [
-      "jnoortheen.nix-ide"
-    ],
-    "settings": {
-      "terminal.integrated.defaultProfile.linux": "bash",
-      "terminal.integrated.defaultLocation": "editor",
-      "workbench.panel.defaultLocation": "bottom",
-      "workbench.activityBar.location": "hidden",
-      "workbench.statusBar.visible": false,
-      "workbench.editor.showTabs": "none",
-      "workbench.sideBar.location": "left"
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultLocation": "editor",
+        "workbench.panel.defaultLocation": "bottom",
+        "workbench.activityBar.location": "hidden",
+        "workbench.statusBar.visible": false,
+        "workbench.editor.showTabs": "none",
+        "workbench.sideBar.location": "left"
+      }
     }
   },
   "remoteUser": "vscode"

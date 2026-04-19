@@ -13,13 +13,16 @@
     { nixpkgs, home-manager, ... }:
     let
       mkHome =
-        {
-          system,
-          username,
-          modules ? [ ./modules/local-links.nix ],
+        { system
+        , username
+        , modules ? [ ./modules/local-links.nix ]
+        ,
         }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           # Pass the username to be used inside home.nix
           extraSpecialArgs = { inherit username; };
           # Combine the base home.nix with any extra modules
@@ -28,6 +31,16 @@
     in
     {
       homeConfigurations = {
+        "crayon@nixos" = mkHome {
+          system = "x86_64-linux";
+          username = "crayon";
+        };
+
+        "nova@nixos" = mkHome {
+          system = "x86_64-linux";
+          username = "nova";
+        };
+
         "kaungminkhant@DESKTOP-JA8S7GL" = mkHome {
           system = "x86_64-linux";
           username = "kaungminkhant";

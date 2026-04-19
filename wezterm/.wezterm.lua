@@ -41,10 +41,10 @@ config.window_close_confirmation = "AlwaysPrompt"
 -- font_with_fallback ensures glyphs always exist
 -- Nerd Font is REQUIRED for LazyVim icons
 config.font = wezterm.font_with_fallback({
-	-- "JetBrains Mono",
-	"Cascadia Code", -- Windows fallback
-	-- "CaskaydiaCove Nerd Font Mono",
-	-- "FiraCode Nerd Font", -- icons + ligatures
+	"JetBrainsMono Nerd Font",
+	"JetBrainsMono Nerd Font Mono",
+	"Cascadia Code", -- fallback until HM switch installs JetBrains live
+	"Noto Color Emoji",
 })
 -- Font size in points
 -- Typical range: 11.0 - 14.0
@@ -138,10 +138,10 @@ config.scrollback_lines = 5000
 -- PowerShell 7 is recommended over:
 --   - cmd.ex
 --   - Windows PowerShell 5.1
-config.default_prog = {
-	"C:/Program Files/PowerShell/7/pwsh.exe",
-	"-NoLogo",
-}
+-- config.default_prog = {
+-- 	"C:/Program Files/PowerShell/7/pwsh.exe",
+-- 	"-NoLogo",
+-- }
 
 -- =========================================================
 -- KEYBINDINGS (NEOVIM-ALIGNED)
@@ -229,7 +229,7 @@ config.window_padding = {
 	left = 10,
 	right = 10,
 	top = 0,
-	bottom = 0,
+	bottom = 23
 }
 
 -- Quick Select Patterns (instant pattern matching)

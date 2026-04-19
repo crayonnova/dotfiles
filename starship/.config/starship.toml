@@ -5,7 +5,6 @@ $directory\
 $all\
 $git_branch\
 $git_status\
-$fill\
 $username\
 $hostname\
 $cmd_duration\

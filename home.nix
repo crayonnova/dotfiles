@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  username,
-  ...
+{ config
+, pkgs
+, username
+, ...
 }:
 {
   home.username = username;
@@ -25,26 +24,45 @@
     uv
     nodejs_24
     tree-sitter
+    lsof
+    spotify
+    cascadia-code
+    nerd-fonts.jetbrains-mono
+    inter
+    noto-fonts
+    noto-fonts-color-emoji
+    google-chrome
+    gnomeExtensions.cloudflare-warp-toggle
   ];
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = [ "JetBrainsMono Nerd Font" ];
+      sansSerif = [
+        "Inter"
+        "Noto Sans"
+      ];
+      serif = [ "Noto Serif" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
+
+  programs.wezterm = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.brave = {
+    enable = true;
+  };
+
+  programs.discord = {
+    enable = true;
+  };
 
   programs.opencode = {
     enable = true;
-    settings = {
-      model = "opencode/minimax-m2.5-free";
-      mcp = {
-        "nixos" = {
-          "type" = "local";
-          "enabled" = true;
-          "command" = [
-            "uvx"
-            "mcp-nixos"
-          ];
-        };
-      };
-      plugin = [
-        "oh-my-opencode@3.12.3"
-      ];
-    };
   };
 
   programs.lazygit = {
@@ -182,7 +200,19 @@
     ll = "eza -l";
     la = "eza -a";
     lt = "eza --tree";
+    listallusers = "bash ${config.home.homeDirectory}/dotfiles/scripts/listallusers.sh";
+
+    # Home-manager
     hh = "home-manager switch --flake .";
+    hhr = "home-manager switch --flake . && gnome-session-quit --logout";
+
+    #NixOS configuration
+    seconfig = "cd /etc/nixos && sudoedit /etc/nixos/configuration.nix";
+    seflake = "cd /etc/nixos && sudoedit /etc/nixos/flake.nix";
+
+    #edit
+    edotfiles = "cd ~/dotfiles && nvim .";
+
     kilo = "npx -y --package @kilocode/cli@7.1.2 kilo";
     nvim-fresh = "rm -rf ~/.local/share/nvim/lazy ~/.local/share/nvim/site ~/.cache/nvim && nvim";
   };
@@ -191,25 +221,16 @@
     enable = true;
     vimAlias = true;
     viAlias = true;
+    withRuby = false;
+    withPython3 = false;
     defaultEditor = true;
+    # Might need to disable if LazyVim is not in use
+    sideloadInitLua = true;
     extraPackages = with pkgs; [
       imagemagick
     ];
   };
-  # home.file = {
-  #   ".config/nvim" = {
-  #     # source = ~/dotfiles/nvim/.config/nvim;
-  #     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim/.config/nvim";
-  #     recursive = true;
-  #   };
-  #
-  #   ".config/starship.toml" = {
-  #     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/starship/.config/starship.toml";
-  #   };
-  #   ".tmux.conf" = {
-  #     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/tmux/.tmux.conf";
-  #   };
-  # };
+
   home.sessionVariables = {
     EDITOR = "nvim";
   };

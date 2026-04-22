@@ -26,7 +26,24 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      sources = {
+        files = { hidden = true },
+        grep = { hidden = true },
+        explorer = { hidden = true },
+        exclude = {
+          "**/.env",
+          "**/.env.*",
+          "**/*.key",
+          "**/*.pem",
+          "**/*.crt",
+          "**/*.p12",
+          "**/*.pfx",
+          "**/.secrets*"
+        }
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },

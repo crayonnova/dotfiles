@@ -48,7 +48,7 @@ config.font = wezterm.font_with_fallback({
 })
 -- Font size in points
 -- Typical range: 11.0 - 14.0
-config.font_size = 12.0
+config.font_size = 13.2
 
 -- Line height multiplier
 -- 1.0 = tight, 1.2 = airy
@@ -113,7 +113,7 @@ config.cursor_blink_rate = 600
 -- Other values:
 --   "TITLE | RESIZE"
 --   "NONE"
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 -- Initial terminal size
 -- config.initial_cols = 1000

@@ -2,6 +2,7 @@
 {
   programs.bash = {
     enable = true;
+    enableCompletion = true;
     historyControl = [
       "ignoredups"
       "ignorespace"
@@ -21,6 +22,16 @@
       fi
     '';
     initExtra = "";
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
   };
 
   programs.zoxide = {

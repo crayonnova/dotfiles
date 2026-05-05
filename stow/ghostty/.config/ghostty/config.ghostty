@@ -1,0 +1,22 @@
+# Mirror the existing Alacritty terminal defaults as closely as Ghostty supports.
+
+# Window chrome
+window-decoration = none
+
+# Match Alacritty's horizontal padding and flush vertical edges.
+window-padding-x = 12
+window-padding-y = 0
+
+# Let Niri's compositor blur show through.
+background-opacity = 0.4
+
+# Typography
+font-size = 13.4
+font-family = "JetBrainsMono Nerd Font"
+font-family-bold = "JetBrainsMono Nerd Font"
+font-family-italic = "JetBrainsMono Nerd Font"
+font-family-bold-italic = "JetBrainsMono Nerd Font"
+font-style = "SemiBold"
+
+# Match Ctrl+Backspace -> Ctrl+W from the Alacritty config.
+keybind = ctrl+backspace=text:\x17

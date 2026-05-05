@@ -1,13 +1,15 @@
 [window]
 decorations = "None"
 padding = { x = 12, y = 0 }
+blur = true
+opacity = 1
 
 [font]
-size = 13.2
+size = 13.4
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
-style = "Regular"
+style = "SemiBold"
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"

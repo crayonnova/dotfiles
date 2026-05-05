@@ -18,7 +18,7 @@ end
 config.check_for_updates = false
 
 -- Enable tab bar (useful when not using tmux) Other values: false
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 
 -- Fancy tab bar adds GPU + layout overhead
 -- Disable when you primarily live in Neovim splits
@@ -83,7 +83,7 @@ config.color_scheme = "Tokyo Night"
 
 -- 1.0 = fully opaque
 -- Below ~0.90 may cause text blur on Windows
-config.window_background_opacity = 1
+config.window_background_opacity = 0.8
 
 -- Text background opacity
 -- Keep at 1.0 for crisp Neovim rendering
@@ -114,10 +114,6 @@ config.cursor_blink_rate = 600
 --   "TITLE | RESIZE"
 --   "NONE"
 config.window_decorations = "NONE"
-
--- Initial terminal size
--- config.initial_cols = 1000
--- config.initial_rows = 1000
 
 -- Prevent window resize when changing font size
 -- Important for stable Neovim layouts

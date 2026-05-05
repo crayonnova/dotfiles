@@ -1,9 +1,17 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 {
+  home.pointerCursor = {
+    enable = config.myconfig.features.desktop;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
+
   home.packages =
     (with pkgs; [
       # Development Tools
@@ -56,7 +64,7 @@
         pavucontrol
         playerctl
         brightnessctl
-        gnomeExtensions.cloudflare-warp-toggle
+        # gnomeExtensions.cloudflare-warp-toggle
       ]
     );
 }

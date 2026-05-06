@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const query = process.argv.slice(2).join(' ');
+if (!query) { process.stderr.write('Usage: ai-cmd <description>\n'); process.exit(1); }
+
+const apiKey = process.env.ANTHROPIC_API_KEY;
+if (!apiKey) { process.stderr.write('Error: ANTHROPIC_API_KEY not set\n'); process.exit(1); }
+
+const res = await fetch('https://api.anthropic.com/v1/messages', {
+  method: 'POST',
+  headers: {
+    'x-api-key': apiKey,
+    'anthropic-version': '2023-06-01',
+    'content-type': 'application/json'
+  },
+  body: JSON.stringify({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 256,
+    system: 'You are a shell command expert. Respond with ONLY the exact shell command to run. No explanation, no markdown, no backticks. Single line only.',
+    messages: [{ role: 'user', content: query }]
+  })
+});
+
+if (!res.ok) { process.stderr.write(`API error: ${res.status}\n`); process.exit(1); }
+const data = await res.json();
+process.stdout.write(data.content[0].text.trim());

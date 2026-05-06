@@ -273,6 +273,20 @@ layout {
         // top 64
         // bottom 35
     }
+
+    tab-indicator {
+        hide-when-single-tab
+        place-within-column
+        gap 4
+        width 4
+        position "left"
+        gaps-between-tabs 2
+        corner-radius 2
+
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        urgent-color "#ff6c6b"
+    }
 }
 
 // Add lines like this to spawn processes at startup.
@@ -364,19 +378,12 @@ animations {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    block-out-from "screen-capture"
-    // default-column-width {}
+    match app-id=r#"^discord$"#
+    match app-id=r#"^brave-browser$"#
+    match app-id=r#"^google-chrome$"#
 
-    background-effect {
-      blur true
-    }
+    block-out-from "screencast"
 }
 
 window-rule {
@@ -672,7 +679,7 @@ binds {
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
-    // Mod+Q { toggle-column-tabbed-display; }
+    Mod+T { toggle-column-tabbed-display; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have

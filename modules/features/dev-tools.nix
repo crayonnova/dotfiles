@@ -1,103 +1,103 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf config.myconfig.features.devtools {
-  # Development-specific tools and configurations
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    viAlias = true;
-    withRuby = false;
-    withPython3 = false;
-    defaultEditor = true;
-    # Might need to disable if LazyVim is not in use
-    sideloadInitLua = true;
-    extraPackages = with pkgs; [
-      imagemagick
-    ];
-  };
+    # Development-specific tools and configurations
+    programs.neovim = {
+      enable = true;
+      vimAlias = true;
+      viAlias = true;
+      withRuby = false;
+      withPython3 = false;
+      defaultEditor = true;
+      # Might need to disable if LazyVim is not in use
+      sideloadInitLua = true;
+      extraPackages = with pkgs; [
+        imagemagick
+      ];
+    };
 
-  home.file.".config/nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/nvim/.config/nvim";
-    recursive = true;
-  };
+    home.file.".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/nvim/.config/nvim";
+      recursive = true;
+    };
 
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "crayonnova";
-        email = "kaungminkhant.dev@gmail.com";
-      };
-      alias = {
-        # co = "checkout";
-        # ci = "commit";
-        # st = "status";
-        # br = "branch";
-        # lg = "log --oneline --graph";
-      };
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "crayonnova";
+          email = "kaungminkhant.dev@gmail.com";
         };
-        push = {
-          autoSetupRemote = true;
+        alias = {
+          glg = "log --oneline --graph";
         };
-        pull = {
-          rebase = true;
+        extraConfig = {
+          init = {
+            defaultBranch = "main";
+          };
+          push = {
+            autoSetupRemote = true;
+          };
+          pull = {
+            rebase = true;
+          };
         };
       };
     };
-  };
 
-  programs.gh = {
-    enable = true;
-    settings = {
-      editor = "nvim";
-      git_protocol = "https";
+    programs.gh = {
+      enable = true;
+      settings = {
+        editor = "nvim";
+        git_protocol = "https";
+      };
+      gitCredentialHelper.enable = true;
     };
-    gitCredentialHelper.enable = true;
-  };
 
-  programs.gh-dash.enable = true;
+    programs.gh-dash.enable = true;
 
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      gui = {
-        pageSize = 20;
-        scrollHeight = 2;
-        theme = {
-          activeBorderColor = [
-            "blue"
-            "bold"
-          ];
-          inactiveBorderColor = [ "white" ];
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        gui = {
+          pageSize = 20;
+          scrollHeight = 2;
+          theme = {
+            activeBorderColor = [
+              "blue"
+              "bold"
+            ];
+            inactiveBorderColor = [ "white" ];
+          };
+        };
+        git = {
+          autoFetch = true;
+          branch = {
+            logOrder = "date-order";
+          };
         };
       };
-      git = {
-        autoFetch = true;
-        branch = {
-          logOrder = "date-order";
-        };
-      };
     };
-  };
 
-  programs.bun = {
-    enable = true;
-  };
+    programs.bun = {
+      enable = true;
+    };
 
-  home.file.".config/.bunfig.toml" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
-  };
+    home.file.".config/.bunfig.toml" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
+    };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
 
-  home.sessionPath = [
-      # Only needed in WSL
-      "$HOME/.npm/bin"
-    ];
+    # home.sessionPath = [
+    #   "$HOME/.npm-gobal"
+    # ];
   };
 }

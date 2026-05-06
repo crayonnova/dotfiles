@@ -53,6 +53,7 @@
       with pkgs;
       [
         wootility
+        obsidian
       ]
     )
     ++ lib.optionals config.myconfig.features.desktop (

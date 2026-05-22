@@ -41,12 +41,7 @@
     '';
   };
 
-  programs.npm = {
-    enable = true;
-    settings = {
-      prefix = "\${HOME}/.npm";
-    };
-  };
+  programs.npm.enable = true;
 
   programs.carapace = {
     enable = true;

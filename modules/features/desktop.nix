@@ -30,6 +30,11 @@
         vlc
         webtorrent_desktop
         steam
+        wootility
+        obsidian
+        logseq
+        mupdf
+        firefox
       ]
     );
 

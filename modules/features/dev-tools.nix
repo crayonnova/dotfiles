@@ -20,6 +20,9 @@
         imagemagick
         rust-analyzer
         lua-language-server
+        (writeShellScriptBin "codelldb" ''
+          exec ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb "$@"
+        '')
       ];
     };
 
@@ -96,6 +99,7 @@
 
     home.packages = with pkgs; [
       vscode-extensions.vadimcn.vscode-lldb
+      ollama
     ];
 
     home.sessionVariables = {

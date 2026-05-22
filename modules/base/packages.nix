@@ -54,14 +54,6 @@
         noto-fonts-color-emoji
       ]
     )
-    ++ lib.optionals config.myconfig.features.software (
-      with pkgs;
-      [
-        wootility
-        obsidian
-        logseq
-      ]
-    )
     ++ lib.optionals config.myconfig.features.desktop (
       with pkgs;
       [

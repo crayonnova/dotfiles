@@ -32,16 +32,19 @@ lib.mkIf config.myconfig.features.desktop {
     xdg-utils
 
     # Lock/idle/wallpaper
-    swaylock
-    swayidle
-    swaybg
+    # swaylock
+    # swayidle
+    # swaybg
 
     # Notifications
-    mako
+    # mako
 
     # Screenshot/region
     grim
     slurp
+
+    # OCR (region select → clipboard)
+    normcap
 
     # Clipboard
     wl-clipboard

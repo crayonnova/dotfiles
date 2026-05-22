@@ -27,7 +27,7 @@ input {
         // Enable numlock on startup, omitting this setting disables it.
         numlock
 
-        repeat-delay 320
+        repeat-delay 220
         repeat-rate 20
     }
 
@@ -83,9 +83,12 @@ input {
 // Remember to uncomment the node by removing "/-"!
 output "eDP-1" {
     mode "1920x1200@120.015"
+    position x=3127 y=0
+    scale 1.25
+    variable-refresh-rate
 }
 
-output "DP-2" {
+output "DP-1" {
     mode "3440x1440@99.992"
     position x=0 y=0
     scale 1.1
@@ -302,7 +305,6 @@ spawn-at-startup "noctalia-shell"
 spawn-at-startup "brave"
 spawn-at-startup "kitty"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
-// spawn-at-startup "swaybg" "-i" "/home/nova/dotfiles/wallpaper2.jpg" "-m" "fill"
 
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -419,7 +421,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^discord$"#
-    match app-id=r#"^brave-browser$"#
+    // match app-id=r#"^brave-browser$"#
     match app-id=r#"^google-chrome$"#
     match app-id=r#"^vesktop$"#
 
@@ -472,6 +474,19 @@ debug {
     // block-out-from "screencast"
 }
 
+window-rule {
+    match is-window-cast-target=true
+    border {
+        active-color "#ff5555"
+        inactive-color "#ff5555"
+        width 4
+    }
+    focus-ring {
+        active-color "#ff5555"
+        inactive-color "#ff5555"
+    }
+}
+
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 
@@ -496,7 +511,9 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Shift+Space hotkey-overlay-title="Search Nix/Home packages" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-home-search.sh\""; }
     Mod+Shift+C hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
-    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }
+    Mod+Shift+T hotkey-overlay-title="OCR Region" { spawn "normcap"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -730,9 +747,8 @@ binds {
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Super+Shift+S { spawn-sh "f=\"$HOME/Pictures/Screenshots/$(date+%Y-%m-%d_%H-%M-%S).png\"; mkdir -p \"$(dirname \"$f\")\"; grim -g \"$(slurp)\" \"$f\" && wl-copy < \"$f\" && xdg-open \"$f\""; }
+    Super+Shift+A { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
@@ -752,4 +768,7 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    Mod+Shift+W { set-dynamic-cast-window; }
+    Mod+Shift+X { clear-dynamic-cast-target; }
 }

@@ -49,6 +49,8 @@
         nerd-fonts.jetbrains-mono
         inter
         noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         noto-fonts-color-emoji
       ]
     )
@@ -57,6 +59,7 @@
       [
         wootility
         obsidian
+        logseq
       ]
     )
     ++ lib.optionals config.myconfig.features.desktop (

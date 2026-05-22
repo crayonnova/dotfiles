@@ -66,6 +66,12 @@
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.starship = {
     enable = true;
     enableBashIntegration = true;

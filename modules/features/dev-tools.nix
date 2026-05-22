@@ -18,6 +18,8 @@
       sideloadInitLua = true;
       extraPackages = with pkgs; [
         imagemagick
+        rust-analyzer
+        lua-language-server
       ];
     };
 
@@ -92,8 +94,14 @@
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
     };
 
+    home.packages = with pkgs; [
+      vscode-extensions.vadimcn.vscode-lldb
+    ];
+
     home.sessionVariables = {
       EDITOR = "nvim";
+      CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
     };
   };
 }

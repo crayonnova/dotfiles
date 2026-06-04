@@ -29,7 +29,6 @@
       nixd
       biome
       # aider-chat-full
-
       # System Utilities
       fastfetch
       fzf
@@ -41,6 +40,9 @@
       trash-cli
       ghostscript
       mermaid-cli
+      jq
+
+      pipx
     ])
     ++ lib.optionals config.myconfig.features.fonts (
       with pkgs;

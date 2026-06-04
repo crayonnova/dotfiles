@@ -13,11 +13,11 @@
 
     # Desktop shell/configuration shared by all local GUI setups.
     programs.wezterm = {
-      enable = true;
-      enableBashIntegration = true;
+      enable = false;
+      enableBashIntegration = false;
     };
 
-    home.file.".wezterm.lua" = {
+    home.file.".wezterm.lua" = lib.mkIf config.programs.wezterm.enable {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/wezterm/.wezterm.lua";
     };
 
@@ -35,6 +35,8 @@
         logseq
         mupdf
         firefox
+        ungoogled-chromium
+        smassh
       ]
     );
 

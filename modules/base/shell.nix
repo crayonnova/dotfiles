@@ -24,6 +24,19 @@
     initExtra = ''
       [ -f "$HOME/.secrets" ] && source "$HOME/.secrets"
 
+      edot() {
+        local id
+        id=$(niri msg windows | awk '
+          /^Window ID/ { cur=$3; sub(":","",cur) }
+          /App ID: "dotfiles"/ { print cur; exit }
+        ')
+        if [ -n "$id" ]; then
+          niri msg action focus-window --id "$id"
+        else
+          setsid -f kitty --class dotfiles -- tmux new -As dotfiles -c ~/dotfiles nvim >/dev/null 2>&1
+        fi
+      }
+
       ai() {
         if [[ $# -eq 0 ]]; then
           echo "Usage: ai <description>" >&2
@@ -102,10 +115,13 @@
     seflake = "cd /etc/nixos && sudoedit /etc/nixos/flake.nix";
     osbuild = "cd /etc/nixos && sudo nixos-rebuild switch --flake .";
 
-    #edit
-    edot = "cd ~/dotfiles && nvim .";
-
     kilo = "npx -y --package @kilocode/cli@7.1.2 kilo";
     nvim-fresh = "rm -rf ~/.local/share/nvim/lazy ~/.local/share/nvim/site ~/.cache/nvim && nvim";
+
+    # projects
+    p1 = "tmux new -As rustream -c ~/pjs/rustream nvim";
+
+    # monkeytype
+    monkeytype = "smassh";
   };
 }

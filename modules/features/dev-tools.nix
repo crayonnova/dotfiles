@@ -93,6 +93,8 @@
       enable = true;
     };
 
+    programs.dbeaver.enable = true;
+
     home.file.".config/.bunfig.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
     };
@@ -100,6 +102,8 @@
     home.packages = with pkgs; [
       vscode-extensions.vadimcn.vscode-lldb
       ollama
+      awscli2
+      cloudflared
     ];
 
     home.sessionVariables = {

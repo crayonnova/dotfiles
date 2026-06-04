@@ -7,7 +7,12 @@ Prefix: `C-a` (rebound from `C-b`). Send literal prefix with `C-a C-a`.
 | Key | Action |
 |---|---|
 | `prefix` `n` | New window |
+| `prefix` `&` | Kill current window (no confirm) |
+| `prefix` `,` | Rename current window |
+| `prefix` `0`–`9` | Jump to window by index |
 | `prefix` `r` | Reload `~/.tmux.conf` |
+
+Kill from the CLI: `tmux kill-window -t <session>:<index>` (omit `-t` to kill the current window).
 
 ## Panes — splitting
 

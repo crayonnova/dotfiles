@@ -28,7 +28,12 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              permittedInsecurePackages = [
+                "electron-39.8.10"
+              ];
+            };
           };
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./home.nix ] ++ modules;

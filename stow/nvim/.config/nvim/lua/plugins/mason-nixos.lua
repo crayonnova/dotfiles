@@ -21,5 +21,16 @@ return {
       opts.automatic_installation = false
       return opts
     end,
-  }
+  },
+  {
+    -- LazyVim auto-installs every configured server via Mason. On NixOS the
+    -- pre-compiled lua-language-server binary won't run, so use the Nix one on
+    -- PATH instead by opting lua_ls out of Mason management.
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      opts.servers = opts.servers or {}
+      opts.servers.lua_ls = vim.tbl_deep_extend("force", opts.servers.lua_ls or {}, { mason = false })
+      return opts
+    end,
+  },
 }

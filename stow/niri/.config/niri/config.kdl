@@ -175,7 +175,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        off
+        on
 
         // How many logical pixels the ring extends out from the windows.
         width 4
@@ -214,7 +214,7 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        // on
+        off
 
         width 4
         active-color "#7fc8ff"
@@ -302,7 +302,7 @@ layout {
 
 // Noctalia is started directly by niri at session startup.
 spawn-at-startup "noctalia-shell"
-spawn-at-startup "brave"
+// spawn-at-startup "brave"
 spawn-at-startup "alacritty"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
 
@@ -477,12 +477,14 @@ debug {
 window-rule {
     match is-window-cast-target=true
     border {
+        on
+        width 4
         active-color "#ff5555"
         inactive-color "#ff5555"
-        width 4
     }
     focus-ring {
-        active-color "#ff5555"
+        on
+        active-color "#7fc8ff"
         inactive-color "#ff5555"
     }
 }
@@ -517,6 +519,7 @@ binds {
     Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }
     Mod+Shift+T hotkey-overlay-title="OCR Region" { spawn "normcap"; }
+    Super+B hotkey-overlay-title="Open Brave Browser" { spawn "brave"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

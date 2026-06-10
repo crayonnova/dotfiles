@@ -33,7 +33,7 @@
         "preferredPlayer": "",
         "spectrumFrameRate": 30,
         "spectrumMirrored": true,
-        "visualizerType": "mirrored",
+        "visualizerType": "none",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": true,
@@ -45,13 +45,13 @@
         "backgroundOpacity": 0,
         "barType": "framed",
         "capsuleColorKey": "none",
-        "capsuleOpacity": 1,
-        "contentPadding": 1,
+        "capsuleOpacity": 0.89,
+        "contentPadding": 5,
         "density": "comfortable",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
         "fontScale": 0.99,
-        "frameRadius": 24,
+        "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
         "marginHorizontal": 4,
@@ -75,7 +75,7 @@
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": true,
-        "widgetSpacing": 5,
+        "widgetSpacing": 6,
         "widgets": {
             "center": [
                 {
@@ -102,10 +102,6 @@
             ],
             "left": [
                 {
-                    "iconColor": "error",
-                    "id": "SessionMenu"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "primary",
                     "id": "Network",
@@ -116,15 +112,6 @@
                     "iconColor": "tertiary",
                     "id": "Bluetooth",
                     "textColor": "tertiary"
-                },
-                {
-                    "clockColor": "none",
-                    "customFont": "Cascadia Code NF SemiBold",
-                    "formatHorizontal": "h:mm AP ddd, MMM dd yyyy",
-                    "formatVertical": "HH mm - dd MM",
-                    "id": "Clock",
-                    "tooltipFormat": "HH:mm ddd, MMM dd",
-                    "useCustomFont": false
                 },
                 {
                     "compactMode": false,
@@ -141,9 +128,71 @@
                     "textColor": "none",
                     "useFixedWidth": false,
                     "visualizerType": "linear"
-                }
-            ],
-            "right": [
+                },
+                {
+                    "defaultSettings": {
+                        "barCycleIntervalSec": 5,
+                        "barDisplayMode": "active",
+                        "barMetric": "prompts",
+                        "providers": {
+                            "claude": {
+                                "credentialsPath": "~/.claude/.credentials.json",
+                                "enabled": false,
+                                "statsPath": "~/.claude/stats-cache.json"
+                            },
+                            "codex": {
+                                "enabled": false
+                            },
+                            "copilot": {
+                                "enabled": false
+                            },
+                            "gemini": {
+                                "enabled": false
+                            },
+                            "openrouter": {
+                                "apiKey": "",
+                                "enabled": false
+                            },
+                            "zen": {
+                                "apiKey": "",
+                                "enabled": false
+                            }
+                        },
+                        "refreshIntervalSec": 30
+                    },
+                    "id": "plugin:model-usage"
+                },
+                {
+                    "defaultSettings": {
+                        "autoStartBreaks": false,
+                        "autoStartWork": false,
+                        "longBreakDuration": 15,
+                        "sessionsBeforeLongBreak": 4,
+                        "shortBreakDuration": 5,
+                        "workDuration": 25
+                    },
+                    "id": "plugin:pomodoro"
+                },
+                {
+                    "defaultSettings": {
+                        "precision": 8,
+                        "showBarValue": true
+                    },
+                    "id": "plugin:noctalia-calculator"
+                },
+                {
+                    "defaultSettings": {
+                        "aqiScale": "us",
+                        "aqicnToken": "",
+                        "boldText": true,
+                        "customLatitude": "",
+                        "customLongitude": "",
+                        "dataSource": "open-meteo",
+                        "refreshInterval": 30,
+                        "useNoctaliaLocation": true
+                    },
+                    "id": "plugin:air-quality"
+                },
                 {
                     "defaultSettings": {
                         "hideSystemPorts": false,
@@ -151,7 +200,9 @@
                         "refreshInterval": 5
                     },
                     "id": "plugin:port-monitor"
-                },
+                }
+            ],
+            "right": [
                 {
                     "blacklist": [
                     ],
@@ -217,13 +268,13 @@
                     "showPowerProfiles": false
                 },
                 {
-                    "defaultSettings": {
-                        "compactMode": false,
-                        "defaultDuration": 0,
-                        "iconColor": "none",
-                        "textColor": "none"
-                    },
-                    "id": "plugin:timer"
+                    "clockColor": "primary",
+                    "customFont": "Cascadia Code PL SemiBold",
+                    "formatHorizontal": "h:mm AP ddd, MMM dd yyyy",
+                    "formatVertical": "HH mm - dd MM",
+                    "id": "Clock",
+                    "tooltipFormat": "HH:mm ddd, MMM dd",
+                    "useCustomFont": true
                 }
             ]
         }
@@ -323,10 +374,50 @@
         }
     },
     "desktopWidgets": {
-        "enabled": true,
+        "enabled": false,
         "gridSnap": false,
         "gridSnapScale": false,
         "monitorWidgets": [
+            {
+                "name": "eDP-1",
+                "widgets": [
+                    {
+                        "id": "Weather",
+                        "roundedCorners": true,
+                        "showBackground": true,
+                        "x": 40,
+                        "y": 36
+                    },
+                    {
+                        "diskPath": "/",
+                        "id": "SystemStat",
+                        "layout": "bottom",
+                        "roundedCorners": true,
+                        "scale": 1.2447068233121883,
+                        "showBackground": true,
+                        "statType": "CPU",
+                        "x": 26,
+                        "y": 363
+                    },
+                    {
+                        "defaultSettings": {
+                            "aqiScale": "us",
+                            "aqicnToken": "",
+                            "boldText": true,
+                            "customLatitude": "",
+                            "customLongitude": "",
+                            "dataSource": "open-meteo",
+                            "refreshInterval": 30,
+                            "useNoctaliaLocation": true
+                        },
+                        "id": "plugin:air-quality",
+                        "scale": 1.2203079565134336,
+                        "showBackground": true,
+                        "x": 32,
+                        "y": 157
+                    }
+                ]
+            }
         ],
         "overviewEnabled": true
     },
@@ -337,7 +428,7 @@
         "deadOpacity": 0.23,
         "displayMode": "always_visible",
         "dockType": "floating",
-        "enabled": false,
+        "enabled": true,
         "floatingRatio": 0,
         "groupApps": false,
         "groupClickAction": "list",
@@ -352,25 +443,24 @@
         "launcherPosition": "start",
         "launcherUseDistroLogo": false,
         "monitors": [
-            "DP-2",
-            "eDP-1"
+            "DP-2"
         ],
         "onlySameOutput": true,
         "pinnedApps": [
         ],
         "pinnedStatic": false,
-        "position": "bottom",
+        "position": "top",
         "showDockIndicator": true,
         "showLauncherIcon": true,
         "sitOnFrame": false,
         "size": 0.53
     },
     "general": {
-        "allowPanelsOnScreenWithoutBar": false,
-        "allowPasswordWithFprintd": false,
+        "allowPanelsOnScreenWithoutBar": true,
+        "allowPasswordWithFprintd": true,
         "animationDisabled": false,
         "animationSpeed": 1,
-        "autoStartAuth": false,
+        "autoStartAuth": true,
         "avatarImage": "/home/nova/Downloads/wallpaper2.jpg",
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
@@ -425,7 +515,7 @@
         "shadowOffsetY": 3,
         "showChangelogOnStartup": false,
         "showHibernateOnLockScreen": false,
-        "showScreenCorners": true,
+        "showScreenCorners": false,
         "showSessionButtonsOnLockScreen": true,
         "smoothScrollEnabled": true,
         "telemetryEnabled": false
@@ -645,7 +735,7 @@
         "enableUserTheming": false
     },
     "ui": {
-        "boxBorderEnabled": true,
+        "boxBorderEnabled": false,
         "fontDefault": "Inter",
         "fontDefaultScale": 1.1,
         "fontFixed": "monospace",
@@ -653,7 +743,7 @@
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": false,
         "scrollbarAlwaysVisible": true,
-        "settingsPanelMode": "centered",
+        "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
         "translucentWidgets": true
@@ -688,7 +778,7 @@
         "randomIntervalSec": 300,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
-        "skipStartupTransition": true,
+        "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",
         "transitionDuration": 1500,
@@ -704,7 +794,7 @@
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "",
+        "wallhavenQuery": "ocean",
         "wallhavenRatios": "21x9",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",

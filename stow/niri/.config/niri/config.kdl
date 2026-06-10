@@ -775,3 +775,6 @@ binds {
     Mod+Shift+W { set-dynamic-cast-window; }
     Mod+Shift+X { clear-dynamic-cast-target; }
 }
+
+include "./noctalia.kdl"
+

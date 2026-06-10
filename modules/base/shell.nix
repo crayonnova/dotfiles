@@ -105,6 +105,7 @@
     la = "eza -a";
     lt = "eza --tree";
     listallusers = "bash ${config.home.homeDirectory}/dotfiles/scripts/listallusers.sh";
+    nedit = "bash ${config.home.homeDirectory}/dotfiles/scripts/nix-edit.sh";
 
     # Home-manager
     hh = "home-manager switch --flake .";

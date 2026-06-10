@@ -41,8 +41,6 @@
       ghostscript
       mermaid-cli
       jq
-
-      pipx
     ])
     ++ lib.optionals config.myconfig.features.fonts (
       with pkgs;

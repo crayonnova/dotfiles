@@ -39,10 +39,6 @@ lib.mkIf config.myconfig.features.desktop {
     # Notifications
     # mako
 
-    # Screenshot/region
-    grim
-    slurp
-
     # OCR (region select → clipboard)
     normcap
 

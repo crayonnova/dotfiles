@@ -14,7 +14,7 @@
     }
   },
   "plugin": [
-    "oh-my-openagent"
+    // "oh-my-openagent"
   ],
   "autoupdate": false
 }

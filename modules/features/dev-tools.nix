@@ -93,6 +93,11 @@
       enable = true;
     };
 
+    programs.fabric-ai = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+
     programs.dbeaver.enable = true;
 
     home.file.".config/.bunfig.toml" = {

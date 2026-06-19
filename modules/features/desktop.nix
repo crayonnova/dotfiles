@@ -13,7 +13,7 @@
 
     # Desktop shell/configuration shared by all local GUI setups.
     programs.wezterm = {
-      enable = false;
+      enable = true;
       enableBashIntegration = false;
     };
 

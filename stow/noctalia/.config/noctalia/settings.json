@@ -204,6 +204,14 @@
             ],
             "right": [
                 {
+                    "hideWhenZero": true,
+                    "hideWhenZeroUnread": true,
+                    "iconColor": "none",
+                    "id": "NotificationHistory",
+                    "showUnreadBadge": false,
+                    "unreadBadgeColor": "primary"
+                },
+                {
                     "blacklist": [
                     ],
                     "chevronColor": "none",
@@ -235,14 +243,6 @@
                     "textColor": "primary",
                     "useMonospaceFont": true,
                     "usePadding": false
-                },
-                {
-                    "hideWhenZero": true,
-                    "hideWhenZeroUnread": true,
-                    "iconColor": "none",
-                    "id": "NotificationHistory",
-                    "showUnreadBadge": false,
-                    "unreadBadgeColor": "primary"
                 },
                 {
                     "displayMode": "alwaysShow",
@@ -636,7 +636,7 @@
     },
     "plugins": {
         "autoUpdate": false,
-        "notifyUpdates": true
+        "notifyUpdates": false
     },
     "sessionMenu": {
         "countdownDuration": 5000,

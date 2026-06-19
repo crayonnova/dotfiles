@@ -8,5 +8,4 @@
 vim.keymap.set("i", "<C-h>", "<C-w>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "X", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename symbol" })

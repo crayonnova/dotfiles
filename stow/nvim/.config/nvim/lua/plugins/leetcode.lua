@@ -45,7 +45,7 @@ return {
       },
       logging = true,
       description = { show_stats = true, width = "45%" },
-      image_support = true,
+      image_support = false,
     },
   },
 }

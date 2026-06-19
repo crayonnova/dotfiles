@@ -19,7 +19,13 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    image = { enabled = true },
+    image = {
+      enabled = vim.env.KITTY_WINDOW_ID ~= nil or vim.env.TERM == "xterm-kitty",
+      doc = {
+        inline = false,
+        float = true,
+      },
+    },
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
@@ -514,6 +520,13 @@ return {
       desc = "LSP Workspace Symbols",
     },
     -- Other
+    {
+      "<leader>ui",
+      function()
+        Snacks.image.hover()
+      end,
+      desc = "Hover Image",
+    },
     {
       "<leader>z",
       function()

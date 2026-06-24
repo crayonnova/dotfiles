@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -21,9 +21,9 @@
     inputs@{ nixpkgs, home-manager, ... }:
     let
       mkHome =
-        { system
-        , modules
-        ,
+        {
+          system,
+          modules,
         }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {

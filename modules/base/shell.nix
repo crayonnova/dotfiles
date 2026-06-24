@@ -106,6 +106,7 @@
     lt = "eza --tree";
     listallusers = "bash ${config.home.homeDirectory}/dotfiles/scripts/listallusers.sh";
     nedit = "bash ${config.home.homeDirectory}/dotfiles/scripts/nix-edit.sh";
+    lpkgs = "bash ${config.home.homeDirectory}/dotfiles/scripts/hm-outdated.sh";
 
     # Home-manager
     hh = "home-manager switch --flake .";
@@ -124,5 +125,7 @@
 
     # monkeytype
     monkeytype = "smassh";
+
+    ocd = "claude --dangerously-skip-permissions";
   };
 }

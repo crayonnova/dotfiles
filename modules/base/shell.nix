@@ -121,7 +121,7 @@
     nvim-fresh = "rm -rf ~/.local/share/nvim/lazy ~/.local/share/nvim/site ~/.cache/nvim && nvim";
 
     # projects
-    p1 = "tmux new -As rustream -c ~/pjs/rustream nvim";
+    p1 = "tmux new -As portfolio -c ~/pjs/portfolio nvim";
 
     # monkeytype
     monkeytype = "smassh";

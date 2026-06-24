@@ -513,13 +513,14 @@ binds {
     }
     Mod+F4 hotkey-overlay-title="Session Menu" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+Shift+C hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+    Mod+Shift+G hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
     Mod+Shift+Space hotkey-overlay-title="Search Nix/Home packages" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-home-search.sh\""; }
 
     Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }
     Mod+Shift+T hotkey-overlay-title="OCR Region" { spawn "normcap"; }
-    Super+B hotkey-overlay-title="Open Brave Browser" { spawn "brave"; }
+    Super+B hotkey-overlay-title="Open Brave Browser" { spawn "chromium-browser"; }
+    Super+M hotkey-overlay-title="Open Spotify" { spawn "spotify"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -753,7 +754,7 @@ binds {
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
-    Super+Shift+S { spawn-sh "f=\"$HOME/Pictures/Screenshots/$(date+%Y-%m-%d_%H-%M-%S).png\"; mkdir -p \"$(dirname \"$f\")\"; grim -g \"$(slurp)\" \"$f\" && wl-copy < \"$f\" && xdg-open \"$f\""; }
+    Super+Shift+S { screenshot; }
     Super+Shift+A { screenshot-screen; }
     Alt+Print { screenshot-window; }
 

@@ -6,5 +6,5 @@
   "autoStartBreaks": false,
   "autoStartWork": false,
   "compactMode": false,
-  "playSound": false
+  "playSound": true
 }

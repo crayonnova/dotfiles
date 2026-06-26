@@ -37,6 +37,7 @@
         firefox
         ungoogled-chromium
         smassh
+        jellyfin-desktop
       ]
     );
 

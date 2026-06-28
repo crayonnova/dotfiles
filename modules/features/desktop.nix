@@ -31,13 +31,13 @@
         webtorrent_desktop
         steam
         wootility
-        obsidian
-        logseq
+        # logseq
         mupdf
         firefox
         ungoogled-chromium
         smassh
         jellyfin-desktop
+        grayjay
       ]
     );
 
@@ -59,6 +59,9 @@
 
     programs.vesktop = {
       enable = config.myconfig.features.software;
+      vencord = {
+        useSystem = true; # get latest version
+      };
     };
 
     programs.opencode = {

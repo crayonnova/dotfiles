@@ -68,12 +68,16 @@
       enable = config.myconfig.features.software;
     };
 
+    home.file.".config/opencode/opencode.json" = lib.mkIf config.programs.opencode.enable {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/opencode/.config/opencode/opencode.json";
+    };
+
     programs.claude-code = {
       enable = config.myconfig.features.software;
     };
 
-    home.file.".config/opencode/opencode.json" = lib.mkIf config.myconfig.features.software {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/opencode/.config/opencode/opencode.json";
+    home.file.".claude/settings.json" = lib.mkIf config.programs.claude-code.enable {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/claude-code/.claude/settings.json";
     };
   };
 }

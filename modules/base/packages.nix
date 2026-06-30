@@ -39,7 +39,7 @@
       lsof
       trash-cli
       ghostscript
-      mermaid-cli
+      # mermaid-cli
       jq
     ])
     ++ lib.optionals config.myconfig.features.fonts (

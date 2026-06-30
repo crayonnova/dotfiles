@@ -38,6 +38,11 @@
         smassh
         jellyfin-desktop
         grayjay
+        # stremio-linux-shell
+        # keet
+        # termshark
+        # wireshark
+        bandwhich
       ]
     );
 

@@ -63,6 +63,8 @@
         nautilus
         papirus-icon-theme
         pavucontrol
+        qpwgraph # PipeWire patchbay — wire a virtual mic / soundboard into Discord
+        helvum # alternative PipeWire patchbay (GTK)
         playerctl
         brightnessctl
         # gnomeExtensions.cloudflare-warp-toggle

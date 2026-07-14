@@ -81,6 +81,14 @@
           ];
         };
 
+        "ubuntu@devin-box" = mkHome {
+          system = "x86_64-linux";
+          modules = [
+            ./users/ubuntu.nix
+            ./profiles/desktop.nix
+          ];
+        };
+
         "vscode@codespaces" = mkHome {
           system = "x86_64-linux";
           modules = [

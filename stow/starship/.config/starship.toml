@@ -14,12 +14,14 @@ $character\
 $shell\
 """
 
+right_format = '$time'
+
 [directory]
 truncation_length = 0
 truncate_to_repo = false
 
 [aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+disabled = true
 
 [azure]
 format = '\[[$symbol($subscription)]($style)\]'
@@ -40,7 +42,7 @@ format = '\[[$symbol($version(-$name))]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
+format = '\[[ $duration]($style)\]'
 min_time = 1
 show_milliseconds = true
 
@@ -279,7 +281,9 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol$workspace]($style)\]'
 
 [time]
+disabled = false
 format = '\[[$time]($style)\]'
+time_format = '%T'
 
 [typst]
 format = '\[[$symbol($version)]($style)\]'

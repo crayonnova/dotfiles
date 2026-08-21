@@ -1,7 +1,7 @@
 [window]
 decorations = "None"
 padding = { x = 12, y = 0 }
-blur = true
+blur = false
 opacity = 1
 
 [font]
@@ -27,3 +27,6 @@ style = "Bold Italic"
 key = "Back"
 mods = "Control"
 chars = "\u0017"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>—"

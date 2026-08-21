@@ -2,7 +2,7 @@
   "env": {
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   },
-  "model": "haiku",
+  "model": "opus",
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true,
     "understand-anything@understand-anything": true

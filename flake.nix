@@ -15,6 +15,11 @@
       url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lightpanda = {
+      # Local scaffold for now; switch to "github:crayonnova/lightpanda-nix" after pushing.
+      url = "path:/home/nova/lightpanda-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,15 +33,21 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             inherit system;
+            overlays = [ inputs.lightpanda.overlays.default ];
             config = {
               allowUnfree = true;
               permittedInsecurePackages = [
                 "electron-39.8.10"
+                "pnpm-10.29.2"
               ];
             };
           };
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home.nix ] ++ modules;
+          modules = [
+            ./home.nix
+            inputs.lightpanda.homeModules.default
+          ]
+          ++ modules;
         };
     in
     {

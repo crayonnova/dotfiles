@@ -6,9 +6,6 @@
 }:
 {
   config = lib.mkIf config.myconfig.features.devtools {
-    # Auto-start the Lightpanda CDP server on 127.0.0.1:9222 as a user service.
-    services.lightpanda.enable = true;
-
     # Development-specific tools and configurations
     programs.zed-editor = {
       enable = true;
@@ -116,7 +113,6 @@
       ollama
       awscli2
       cloudflared
-      lightpanda
     ];
 
     home.sessionVariables = {

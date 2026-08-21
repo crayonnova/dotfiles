@@ -2,4 +2,5 @@
 .stow-local-ignore
 .agents
 .claude
+!stow/claude-code/.claude/
 .aider*

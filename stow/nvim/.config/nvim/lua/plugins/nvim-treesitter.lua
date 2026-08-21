@@ -8,6 +8,11 @@ return {
       "tsx",
       "lua",
       "nix",
+      "css",
+      "latex",
+      "scss",
+      "svelte",
+      "vue",
     },
   },
 }

@@ -58,7 +58,17 @@ if [[ -z $query ]]; then
 	exit 0
 fi
 
-encoded_query=$(urlencode "$query")
-
-"$open_bin" "https://search.nixos.org/packages?channel=unstable&type=packages&query=${encoded_query}"
-"$open_bin" "https://home-manager-options.extranix.com/?release=master&query=${encoded_query}"
+if [[ $query == '!gh '* ]]; then
+	query=${query#!gh }
+	query=$(trim "$query")
+	if [[ $query == */* ]]; then
+		"$open_bin" "https://github.com/${query}"
+	else
+		encoded_query=$(urlencode "$query")
+		"$open_bin" "https://github.com/search?q=${encoded_query}"
+	fi
+else
+	encoded_query=$(urlencode "$query")
+	"$open_bin" "https://search.nixos.org/packages?channel=unstable&type=packages&query=${encoded_query}"
+	"$open_bin" "https://home-manager-options.extranix.com/?release=master&query=${encoded_query}"
+fi

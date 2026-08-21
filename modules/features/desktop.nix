@@ -6,13 +6,18 @@
 }:
 {
   config = lib.mkIf config.myconfig.features.desktop {
+    gtk.iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
     # Desktop shell/configuration shared by all local GUI setups.
     programs.wezterm = {
       enable = true;
-      enableBashIntegration = true;
+      enableBashIntegration = false;
     };
 
-    home.file.".wezterm.lua" = {
+    home.file.".wezterm.lua" = lib.mkIf config.programs.wezterm.enable {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/wezterm/.wezterm.lua";
     };
 
@@ -25,6 +30,22 @@
         vlc
         webtorrent_desktop
         steam
+        wootility
+        logseq
+        mupdf
+        firefox
+        ungoogled-chromium
+        smassh
+        jellyfin-desktop
+        # grayjay - TODO: build erro
+        # stremio-linux-shell
+        keet
+        # termshark
+        # wireshark
+        bandwhich
+        vencord
+        discord
+        # handbrake - TODO: ffmpeg error
       ]
     );
 
@@ -40,7 +61,11 @@
       enable = config.myconfig.features.software;
     };
 
-    programs.discord = {
+    programs.qutebrowser = {
+      enable = config.myconfig.features.software;
+    };
+
+    programs.vesktop = {
       enable = config.myconfig.features.software;
     };
 
@@ -48,12 +73,16 @@
       enable = config.myconfig.features.software;
     };
 
+    home.file.".config/opencode/opencode.json" = lib.mkIf config.programs.opencode.enable {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/opencode/.config/opencode/opencode.json";
+    };
+
     programs.claude-code = {
       enable = config.myconfig.features.software;
     };
 
-    home.file.".config/opencode/opencode.json" = lib.mkIf config.myconfig.features.software {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/opencode/.config/opencode/opencode.json";
+    home.file.".claude/settings.json" = lib.mkIf config.programs.claude-code.enable {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/claude-code/.claude/settings.json";
     };
   };
 }

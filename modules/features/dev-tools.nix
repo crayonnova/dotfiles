@@ -6,7 +6,14 @@
 }:
 {
   config = lib.mkIf config.myconfig.features.devtools {
+    # Auto-start the Lightpanda CDP server on 127.0.0.1:9222 as a user service.
+    services.lightpanda.enable = true;
+
     # Development-specific tools and configurations
+    programs.zed-editor = {
+      enable = true;
+    };
+
     programs.neovim = {
       enable = true;
       vimAlias = true;
@@ -18,6 +25,11 @@
       sideloadInitLua = true;
       extraPackages = with pkgs; [
         imagemagick
+        rust-analyzer
+        lua-language-server
+        (writeShellScriptBin "codelldb" ''
+          exec ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb "$@"
+        '')
       ];
     };
 
@@ -88,16 +100,29 @@
       enable = true;
     };
 
+    programs.fabric-ai = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+
+    programs.dbeaver.enable = true;
+
     home.file.".config/.bunfig.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
     };
 
+    home.packages = with pkgs; [
+      vscode-extensions.vadimcn.vscode-lldb
+      ollama
+      awscli2
+      cloudflared
+      lightpanda
+    ];
+
     home.sessionVariables = {
       EDITOR = "nvim";
+      CODELLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      LIBLLDB_PATH = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.so";
     };
-
-    # home.sessionPath = [
-    #   "$HOME/.npm-gobal"
-    # ];
   };
 }

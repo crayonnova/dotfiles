@@ -8,12 +8,9 @@ return {
         floats = "transparent",
       },
       on_highlights = function(highlights)
-        highlights.Normal = { bg = "NONE" }
-        highlights.NormalNC = { bg = "NONE" }
-        highlights.SignColumn = { bg = "NONE" }
-        highlights.EndOfBuffer = { bg = "NONE" }
-        highlights.FloatBorder = { bg = "NONE" }
-        highlights.NormalFloat = { bg = "NONE" }
+        for _, group in ipairs({ "Normal", "NormalNC", "SignColumn", "EndOfBuffer", "FloatBorder", "NormalFloat" }) do
+          highlights[group] = vim.tbl_extend("force", highlights[group] or {}, { bg = "NONE" })
+        end
       end,
     },
   },

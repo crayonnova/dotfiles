@@ -24,6 +24,19 @@
     initExtra = ''
       [ -f "$HOME/.secrets" ] && source "$HOME/.secrets"
 
+      edot() {
+        local id
+        id=$(niri msg windows | awk '
+          /^Window ID/ { cur=$3; sub(":","",cur) }
+          /App ID: "dotfiles"/ { print cur; exit }
+        ')
+        if [ -n "$id" ]; then
+          niri msg action focus-window --id "$id"
+        else
+          setsid -f kitty --class dotfiles -- tmux new -As dotfiles -c ~/dotfiles nvim >/dev/null 2>&1
+        fi
+      }
+
       ai() {
         if [[ $# -eq 0 ]]; then
           echo "Usage: ai <description>" >&2
@@ -41,12 +54,7 @@
     '';
   };
 
-  programs.npm = {
-    enable = true;
-    settings = {
-      prefix = "\${HOME}/.npm";
-    };
-  };
+  programs.npm.enable = true;
 
   programs.carapace = {
     enable = true;
@@ -64,6 +72,12 @@
     options = [
       "--cmd cd"
     ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.starship = {
@@ -91,6 +105,8 @@
     la = "eza -a";
     lt = "eza --tree";
     listallusers = "bash ${config.home.homeDirectory}/dotfiles/scripts/listallusers.sh";
+    nedit = "bash ${config.home.homeDirectory}/dotfiles/scripts/nix-edit.sh";
+    lpkgs = "bash ${config.home.homeDirectory}/dotfiles/scripts/hm-outdated.sh";
 
     # Home-manager
     hh = "home-manager switch --flake .";
@@ -101,10 +117,15 @@
     seflake = "cd /etc/nixos && sudoedit /etc/nixos/flake.nix";
     osbuild = "cd /etc/nixos && sudo nixos-rebuild switch --flake .";
 
-    #edit
-    edot = "cd ~/dotfiles && nvim .";
-
     kilo = "npx -y --package @kilocode/cli@7.1.2 kilo";
     nvim-fresh = "rm -rf ~/.local/share/nvim/lazy ~/.local/share/nvim/site ~/.cache/nvim && nvim";
+
+    # projects
+    p1 = "tmux new -As portfolio -c ~/pjs/portfolio nvim";
+
+    # monkeytype
+    monkeytype = "smassh";
+
+    ocd = "claude --dangerously-skip-permissions";
   };
 }

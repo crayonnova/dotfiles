@@ -29,7 +29,6 @@
       nixd
       biome
       # aider-chat-full
-
       # System Utilities
       fastfetch
       fzf
@@ -38,6 +37,10 @@
       ripgrep
       btop
       lsof
+      trash-cli
+      ghostscript
+      # mermaid-cli
+      jq
     ])
     ++ lib.optionals config.myconfig.features.fonts (
       with pkgs;
@@ -46,14 +49,9 @@
         nerd-fonts.jetbrains-mono
         inter
         noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         noto-fonts-color-emoji
-      ]
-    )
-    ++ lib.optionals config.myconfig.features.software (
-      with pkgs;
-      [
-        wootility
-        obsidian
       ]
     )
     ++ lib.optionals config.myconfig.features.desktop (
@@ -62,7 +60,11 @@
         xwayland-satellite
         cosmic-wallpapers
         gnome-control-center
+        nautilus
+        papirus-icon-theme
         pavucontrol
+        qpwgraph # PipeWire patchbay — wire a virtual mic / soundboard into Discord
+        helvum # alternative PipeWire patchbay (GTK)
         playerctl
         brightnessctl
         # gnomeExtensions.cloudflare-warp-toggle

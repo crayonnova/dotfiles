@@ -1,0 +1,10 @@
+{
+  "aqiScale": "us",
+  "dataSource": "aqicn",
+  "aqicnToken": "c1c9cc41c61d8406c9ad028273d1d7339604b107",
+  "useNoctaliaLocation": false,
+  "customLatitude": "13.687442",
+  "customLongitude": "100.673995",
+  "refreshInterval": 30,
+  "boldText": true
+}

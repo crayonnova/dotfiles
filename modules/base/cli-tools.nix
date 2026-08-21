@@ -1,6 +1,21 @@
 { lib, config, ... }:
 {
   # Pure CLI tools and utilities - suitable for remote development
+  # ~/.npmrc is a read-only Nix store symlink — redirect writes to a writable path.
+  # mkForce overrides the conflicting definition from programs/npm.nix.
+  home.sessionVariables = {
+    NPM_CONFIG_USERCONFIG = lib.mkForce "$HOME/.config/npm/npmrc";
+  };
+
+  home.sessionPath = [ "$HOME/.npm/bin" ];
+
+  home.activation.npmUserConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "$HOME/.config/npm"
+    if [ ! -f "$HOME/.config/npm/npmrc" ]; then
+      echo "prefix=$HOME/.npm" > "$HOME/.config/npm/npmrc"
+    fi
+  '';
+
   programs.ripgrep = {
     enable = true;
     arguments = [

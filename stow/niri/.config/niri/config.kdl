@@ -37,7 +37,7 @@ input {
     touchpad {
         // off
         tap
-        // dwt
+        dwt
         // dwtp
         // drag false
         // drag-lock
@@ -81,17 +81,22 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
-    mode "1920x1200@120.015"
-    position x=3127 y=0
-    scale 1.25
-    variable-refresh-rate
-}
+// output "DP-2" {
+//     mode "3440x1440@99.992"
+//     position x=0 y=0
+//     scale 1.0
+// }
 
 output "DP-1" {
     mode "3440x1440@99.992"
     position x=0 y=0
     scale 1.1
+}
+
+output "eDP-1" {
+    mode "1920x1200@120.015"
+    scale 1.25
+    variable-refresh-rate
 }
 
 /-output "eDP-1" {
@@ -778,6 +783,17 @@ binds {
 
     Mod+Shift+W { set-dynamic-cast-window; }
     Mod+Shift+X { clear-dynamic-cast-target; }
+}
+
+// layer-rule {
+//   match namespace="^noctalia-overview*"
+//   place-within-backdrop true
+// }
+
+gestures {
+  hot-corners {
+    off
+  }
 }
 
 include "./noctalia.kdl"

@@ -31,18 +31,21 @@
         webtorrent_desktop
         steam
         wootility
-        # logseq
+        logseq
         mupdf
         firefox
         ungoogled-chromium
         smassh
         jellyfin-desktop
-        grayjay
+        # grayjay - TODO: build erro
         # stremio-linux-shell
-        # keet
+        keet
         # termshark
         # wireshark
         bandwhich
+        vencord
+        discord
+        # handbrake - TODO: ffmpeg error
       ]
     );
 
@@ -64,9 +67,6 @@
 
     programs.vesktop = {
       enable = config.myconfig.features.software;
-      vencord = {
-        useSystem = true; # get latest version
-      };
     };
 
     programs.opencode = {

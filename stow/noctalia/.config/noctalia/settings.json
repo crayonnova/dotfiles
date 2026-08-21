@@ -32,11 +32,11 @@
         ],
         "preferredPlayer": "",
         "spectrumFrameRate": 30,
-        "spectrumMirrored": true,
+        "spectrumMirrored": false,
         "visualizerType": "none",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
-        "volumeOverdrive": true,
+        "volumeOverdrive": false,
         "volumeStep": 5
     },
     "bar": {
@@ -131,57 +131,6 @@
                 },
                 {
                     "defaultSettings": {
-                        "barCycleIntervalSec": 5,
-                        "barDisplayMode": "active",
-                        "barMetric": "prompts",
-                        "providers": {
-                            "claude": {
-                                "credentialsPath": "~/.claude/.credentials.json",
-                                "enabled": false,
-                                "statsPath": "~/.claude/stats-cache.json"
-                            },
-                            "codex": {
-                                "enabled": false
-                            },
-                            "copilot": {
-                                "enabled": false
-                            },
-                            "gemini": {
-                                "enabled": false
-                            },
-                            "openrouter": {
-                                "apiKey": "",
-                                "enabled": false
-                            },
-                            "zen": {
-                                "apiKey": "",
-                                "enabled": false
-                            }
-                        },
-                        "refreshIntervalSec": 30
-                    },
-                    "id": "plugin:model-usage"
-                },
-                {
-                    "defaultSettings": {
-                        "autoStartBreaks": false,
-                        "autoStartWork": false,
-                        "longBreakDuration": 15,
-                        "sessionsBeforeLongBreak": 4,
-                        "shortBreakDuration": 5,
-                        "workDuration": 25
-                    },
-                    "id": "plugin:pomodoro"
-                },
-                {
-                    "defaultSettings": {
-                        "precision": 8,
-                        "showBarValue": true
-                    },
-                    "id": "plugin:noctalia-calculator"
-                },
-                {
-                    "defaultSettings": {
                         "aqiScale": "us",
                         "aqicnToken": "",
                         "boldText": true,
@@ -192,14 +141,6 @@
                         "useNoctaliaLocation": true
                     },
                     "id": "plugin:air-quality"
-                },
-                {
-                    "defaultSettings": {
-                        "hideSystemPorts": false,
-                        "hideWhenEmpty": false,
-                        "refreshInterval": 5
-                    },
-                    "id": "plugin:port-monitor"
                 }
             ],
             "right": [
@@ -398,23 +339,6 @@
                         "statType": "CPU",
                         "x": 26,
                         "y": 363
-                    },
-                    {
-                        "defaultSettings": {
-                            "aqiScale": "us",
-                            "aqicnToken": "",
-                            "boldText": true,
-                            "customLatitude": "",
-                            "customLongitude": "",
-                            "dataSource": "open-meteo",
-                            "refreshInterval": 30,
-                            "useNoctaliaLocation": true
-                        },
-                        "id": "plugin:air-quality",
-                        "scale": 1.2203079565134336,
-                        "showBackground": true,
-                        "x": 32,
-                        "y": 157
                     }
                 ]
             }
@@ -428,7 +352,7 @@
         "deadOpacity": 0.23,
         "displayMode": "always_visible",
         "dockType": "floating",
-        "enabled": true,
+        "enabled": false,
         "floatingRatio": 0,
         "groupApps": false,
         "groupClickAction": "list",
@@ -449,7 +373,7 @@
         "pinnedApps": [
         ],
         "pinnedStatic": false,
-        "position": "top",
+        "position": "bottom",
         "showDockIndicator": true,
         "showLauncherIcon": true,
         "sitOnFrame": false,
@@ -464,8 +388,8 @@
         "avatarImage": "/home/nova/Downloads/wallpaper2.jpg",
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
-        "clockStyle": "custom",
-        "compactLockScreen": false,
+        "clockStyle": "analog",
+        "compactLockScreen": true,
         "dimmerOpacity": 0,
         "enableBlurBehind": false,
         "enableLockScreenCountdown": true,
@@ -499,13 +423,13 @@
         },
         "language": "",
         "lockOnSuspend": true,
-        "lockScreenAnimations": false,
-        "lockScreenBlur": 0,
+        "lockScreenAnimations": true,
+        "lockScreenBlur": 0.91,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
-        "lockScreenTint": 0,
-        "passwordChars": false,
+        "lockScreenTint": 0.71,
+        "passwordChars": true,
         "radiusRatio": 0.87,
         "reverseScroll": false,
         "scaleRatio": 1,
@@ -570,7 +494,7 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "list"
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": false,

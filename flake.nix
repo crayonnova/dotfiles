@@ -16,7 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lightpanda = {
-      # Local scaffold for now; switch to "github:crayonnova/lightpanda-nix" after pushing.
       url = "github:crayonnova/lightpanda-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };

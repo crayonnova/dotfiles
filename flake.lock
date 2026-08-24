@@ -20,26 +20,6 @@
         "type": "github"
       }
     },
-    "lightpanda": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787316801,
-        "narHash": "sha256-jm3gWkhSIeHSntFnT8+ilrwqhL2fKiT0mIEsXH4zako=",
-        "owner": "crayonnova",
-        "repo": "lightpanda-nix",
-        "rev": "a831d0a6339a9cee6c9be82be4f7c819ed25f929",
-        "type": "github"
-      },
-      "original": {
-        "owner": "crayonnova",
-        "repo": "lightpanda-nix",
-        "type": "github"
-      }
-    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -178,7 +158,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "lightpanda": "lightpanda",
         "niri": "niri",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia"

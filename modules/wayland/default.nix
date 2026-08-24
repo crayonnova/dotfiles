@@ -18,5 +18,9 @@
     home.file.".config/niri/config.kdl" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/niri/.config/niri/config.kdl";
     };
+
+    home.file.".config/niri/keybinds.kdl" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/niri/.config/niri/keybinds.kdl";
+    };
   };
 }

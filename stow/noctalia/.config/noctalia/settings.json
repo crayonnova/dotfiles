@@ -30,11 +30,11 @@
     "audio": {
         "mprisBlacklist": [
         ],
-        "preferredPlayer": "",
+        "preferredPlayer": "spotify",
         "spectrumFrameRate": 30,
         "spectrumMirrored": false,
         "visualizerType": "none",
-        "volumeFeedback": false,
+        "volumeFeedback": true,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -216,6 +216,14 @@
                     "id": "Clock",
                     "tooltipFormat": "HH:mm ddd, MMM dd",
                     "useCustomFont": true
+                },
+                {
+                    "defaultSettings": {
+                        "hideSystemPorts": false,
+                        "hideWhenEmpty": false,
+                        "refreshInterval": 5
+                    },
+                    "id": "plugin:port-monitor"
                 }
             ]
         }
@@ -430,7 +438,7 @@
         ],
         "lockScreenTint": 0.71,
         "passwordChars": true,
-        "radiusRatio": 0.87,
+        "radiusRatio": 1,
         "reverseScroll": false,
         "scaleRatio": 1,
         "screenRadiusRatio": 0,
@@ -660,7 +668,7 @@
     },
     "ui": {
         "boxBorderEnabled": false,
-        "fontDefault": "Inter",
+        "fontDefault": "JetBrainsMono Nerd Font",
         "fontDefaultScale": 1.1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,

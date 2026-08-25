@@ -30,3 +30,8 @@ chars = "\u0017"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>—"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

@@ -36,6 +36,7 @@
           setsid -f kitty --class dotfiles -- tmux new -As dotfiles -c ~/dotfiles nvim >/dev/null 2>&1
         fi
       }
+    '';
   };
 
   programs.npm.enable = true;

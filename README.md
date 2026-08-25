@@ -52,7 +52,6 @@ dotfiles/
 │   └── wezterm/                 # WezTerm config.
 │
 ├── scripts/                     # Helper scripts used by shell aliases and local workflows.
-│   ├── ai-cmd                   # `ai <description>` — natural language to shell command.
 │   ├── fuzzel-home-search.sh    # Fuzzel-driven home directory search.
 │   ├── hm-outdated.sh           # `lpkgs` — list outdated Home Manager packages.
 │   ├── listallusers.sh          # `listallusers` — enumerate system users.

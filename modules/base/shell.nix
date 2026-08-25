@@ -36,22 +36,6 @@
           setsid -f kitty --class dotfiles -- tmux new -As dotfiles -c ~/dotfiles nvim >/dev/null 2>&1
         fi
       }
-
-      ai() {
-        if [[ $# -eq 0 ]]; then
-          echo "Usage: ai <description>" >&2
-          return 1
-        fi
-        local result
-        result=$(${config.home.homeDirectory}/dotfiles/scripts/ai-cmd "$@") || return 1
-        local edited
-        read -e -i "$result" -p "$ " edited < /dev/tty
-        if [[ -n "$edited" ]]; then
-          history -s "$edited"
-          eval "$edited"
-        fi
-      }
-    '';
   };
 
   programs.npm.enable = true;

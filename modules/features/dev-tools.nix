@@ -107,6 +107,8 @@
 
     programs.dbeaver.enable = true;
 
+    programs.herdr.enable = true;
+
     home.file.".config/.bunfig.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
     };

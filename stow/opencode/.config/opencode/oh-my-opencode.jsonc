@@ -15,6 +15,8 @@
   //   google/gemma-4-26b-a4b-it:free    0/1 -- same
   //   opencode/nemotron-3.5-lightning-free  1/4 -- 141s, then timeouts
   //     (the OpenRouter twin nvidia/nemotron-3.5-lightning:free answers in ~9s)
+  //   minimax/minimax-m2.7:free         4/7 -- degrades under load; fast (9s) when
+  //     idle, but recent passes took ~70s and the rest timed out at 90s
   //   nvidia/nemotron-3.5-content-safety:free -- classifier, not general-purpose
   // Also note: models.dev lists more opencode "*-free" ids than this account can
   // reach; `opencode models` is the authoritative availability list.
@@ -48,7 +50,7 @@
       "fallback_models": [
         "openrouter/poolside/laguna-s-2.1:free",
         "openrouter/cohere/north-mini-code:free",
-        "openrouter/minimax/minimax-m2.7:free"
+        "opencode/hy3-free"
       ],
       "prompt_append": "Keep edits minimal and file-scoped."
     },
@@ -70,11 +72,11 @@
 
     // Analysis / critique -- read-only.
     "metis": {
-      "model": "openrouter/minimax/minimax-m2.7:free",
+      "model": "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
-        "openrouter/thinkingmachines/inkling:free"
+        "openrouter/thinkingmachines/inkling:free",
+        "openrouter/minimax/minimax-m3:free"
       ],
       "permission": {
         "edit": "deny",
@@ -163,10 +165,10 @@
       ]
     },
     "unspecified-high": {
-      "model": "openrouter/minimax/minimax-m2.7:free",
+      "model": "openrouter/minimax/minimax-m3:free",
       "fallback_models": [
         "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
-        "openrouter/minimax/minimax-m3:free"
+        "opencode/hy3-free"
       ]
     }
   }

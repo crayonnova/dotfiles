@@ -1,8 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
 
-  // All models below are free tier: opencode zen "*-free" models and
-  // OpenRouter ":free" variants. Verify with `opencode models`.
+  // Free-tier only: opencode zen "*-free" (+ big-pickle, which prices at $0/$0)
+  // and OpenRouter ":free" variants.
+  //
+  // Every id below was smoke-tested end-to-end (`opencode run -m <id>`) and
+  // answered in 7-19s. On a free tier availability matters more than raw
+  // capability, so primaries are the models that answered every time and
+  // fallbacks cross providers -- one endpoint's rate limit shouldn't stall a run.
+  //
+  // Verified UNUSABLE, do not re-add without retesting:
+  //   z-ai/glm-5.2:free                 0/4 -- "temporarily rate-limited upstream"
+  //   google/gemma-4-31b-it:free        0/4 -- same
+  //   google/gemma-4-26b-a4b-it:free    0/1 -- same
+  //   opencode/nemotron-3.5-lightning-free  1/4 -- 141s, then timeouts
+  //     (the OpenRouter twin nvidia/nemotron-3.5-lightning:free answers in ~9s)
+  //   nvidia/nemotron-3.5-content-safety:free -- classifier, not general-purpose
+  // Also note: models.dev lists more opencode "*-free" ids than this account can
+  // reach; `opencode models` is the authoritative availability list.
 
   "background_task": {
     "defaultConcurrency": 1,
@@ -15,34 +30,35 @@
 
   // 2) Per-agent tuning
   "agents": {
-    // Orchestrator / main driver — strong general coding model.
+    // Orchestrator / main driver -- needs the most reliable agentic tool-caller.
     "sisyphus": {
-      "model": "openrouter/z-ai/glm-5.2:free",
+      "model": "openrouter/minimax/minimax-m3:free",
       "temperature": 0.2,
       "fallback_models": [
-        "openrouter/minimax/minimax-m3:free",
-        "opencode/hy3-free"
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+        "opencode/hy3-free",
+        "opencode/big-pickle"
       ]
     },
 
-    // Implementer — agentic edit loop, wants tool-call reliability.
+    // Implementer -- agentic edit loop; fallbacks are code-specialised.
     "hephaestus": {
       "model": "openrouter/minimax/minimax-m3:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openrouter/z-ai/glm-5.2:free",
         "openrouter/poolside/laguna-s-2.1:free",
+        "openrouter/cohere/north-mini-code:free",
         "openrouter/minimax/minimax-m2.7:free"
       ],
       "prompt_append": "Keep edits minimal and file-scoped."
     },
 
-    // Planner / reviewer — reasoning-heavy, no writes.
+    // Planner / reviewer -- reasoning-heavy, no writes.
     "prometheus": {
       "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
       "temperature": 0.1,
       "fallback_models": [
-        "opencode/nemotron-3-ultra-free",
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
         "openrouter/thinkingmachines/inkling:free"
       ],
       "permission": {
@@ -52,13 +68,13 @@
       "prompt_append": "You are a planning/review agent. Do not modify files directly."
     },
 
-    // Analysis / critique — read-only.
+    // Analysis / critique -- read-only.
     "metis": {
       "model": "openrouter/minimax/minimax-m2.7:free",
       "temperature": 0.1,
       "fallback_models": [
         "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
-        "opencode/mimo-v2.5-free"
+        "openrouter/thinkingmachines/inkling:free"
       ],
       "permission": {
         "edit": "deny",
@@ -66,13 +82,13 @@
       }
     },
 
-    // Codebase search — high volume, wants the fastest cheap model.
+    // Codebase search -- highest call volume, so latency is the deciding factor.
     "explore": {
-      "model": "opencode/nemotron-3.5-lightning-free",
+      "model": "openrouter/nvidia/nemotron-3.5-lightning:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openrouter/nvidia/nemotron-3.5-lightning:free",
-        "openrouter/thinkingmachines/inkling-small:free"
+        "openrouter/thinkingmachines/inkling-small:free",
+        "openrouter/poolside/laguna-xs-2.1:free"
       ],
       "permission": {
         "edit": "deny",
@@ -80,24 +96,24 @@
       }
     },
 
-    // Hard-question escalation — deepest reasoning available for free.
+    // Hard-question escalation -- deepest reasoning available for free.
     "oracle": {
       "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openrouter/z-ai/glm-5.2:free",
         "openrouter/minimax/minimax-m3:free",
+        "openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
         "opencode/nemotron-3-ultra-free"
       ]
     },
 
-    // Docs/reference lookup — small and fast is enough.
+    // Docs/reference lookup -- small and fast is enough.
     "librarian": {
       "model": "openrouter/thinkingmachines/inkling-small:free",
       "temperature": 0.1,
       "fallback_models": [
         "openrouter/poolside/laguna-xs-2.1:free",
-        "opencode/nemotron-3.5-lightning-free"
+        "openrouter/nvidia/nemotron-3.5-lightning:free"
       ]
     }
   },
@@ -105,53 +121,52 @@
   // 3) Category defaults for delegated task routing
   "categories": {
     "deep": {
-      "model": "openrouter/z-ai/glm-5.2:free",
+      "model": "openrouter/minimax/minimax-m3:free",
       "fallback_models": [
-        "openrouter/minimax/minimax-m3:free",
-        "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+        "opencode/hy3-free"
       ]
     },
     "ultrabrain": {
       "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
       "fallback_models": [
         "opencode/nemotron-3-ultra-free",
-        "openrouter/z-ai/glm-5.2:free",
         "openrouter/minimax/minimax-m3:free"
       ]
     },
     "artistry": {
       "model": "openrouter/minimax/minimax-m3:free",
       "fallback_models": [
-        "openrouter/z-ai/glm-5.2:free",
-        "openrouter/poolside/laguna-s-2.1:free"
+        "openrouter/poolside/laguna-s-2.1:free",
+        "opencode/big-pickle"
       ]
     },
     "writing": {
       "model": "opencode/hy3-free",
       "fallback_models": [
         "openrouter/thinkingmachines/inkling:free",
-        "openrouter/google/gemma-4-31b-it:free"
+        "openrouter/dots-studio/dots-3-note-preview:free"
       ]
     },
     "quick": {
-      "model": "opencode/nemotron-3.5-lightning-free",
+      "model": "openrouter/nvidia/nemotron-3.5-lightning:free",
       "fallback_models": [
-        "openrouter/nvidia/nemotron-3.5-lightning:free",
+        "openrouter/thinkingmachines/inkling-small:free",
         "openrouter/poolside/laguna-xs-2.1:free"
       ]
     },
     "unspecified-low": {
       "model": "opencode/mimo-v2.5-free",
       "fallback_models": [
-        "openrouter/thinkingmachines/inkling-small:free",
-        "openrouter/google/gemma-4-31b-it:free"
+        "opencode/muse-spark-1.2-contributor-free",
+        "openrouter/thinkingmachines/inkling-small:free"
       ]
     },
     "unspecified-high": {
       "model": "openrouter/minimax/minimax-m2.7:free",
       "fallback_models": [
-        "openrouter/z-ai/glm-5.2:free",
-        "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+        "openrouter/minimax/minimax-m3:free"
       ]
     }
   }

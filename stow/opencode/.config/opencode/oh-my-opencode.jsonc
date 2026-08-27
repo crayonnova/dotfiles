@@ -4,10 +4,13 @@
   // Free-tier only: opencode zen "*-free" (+ big-pickle, which prices at $0/$0)
   // and OpenRouter ":free" variants.
   //
-  // Every id below was smoke-tested end-to-end (`opencode run -m <id>`) and
-  // answered in 7-19s. On a free tier availability matters more than raw
-  // capability, so primaries are the models that answered every time and
-  // fallbacks cross providers -- one endpoint's rate limit shouldn't stall a run.
+  // Every id below was smoke-tested end-to-end (`opencode run -m <id>`). All
+  // primaries answered in 7-20s; the one slow entry is opencode/nemotron-3-ultra-free
+  // (6/6 but 27-56s), used only as an oracle/ultrabrain fallback where a slow
+  // deep answer is acceptable -- do not promote it to a primary.
+  // On a free tier availability matters more than raw capability, so primaries
+  // are the models that answered every time and fallbacks cross providers --
+  // one endpoint's rate limit shouldn't stall a run.
   //
   // Verified UNUSABLE, do not re-add without retesting:
   //   z-ai/glm-5.2:free                 0/4 -- "temporarily rate-limited upstream"

@@ -1,41 +1,50 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
 
+  // All models below are free tier: opencode zen "*-free" models and
+  // OpenRouter ":free" variants. Verify with `opencode models`.
+
   "background_task": {
     "defaultConcurrency": 1,
     "staleTimeoutMs": 180000,
     "providerConcurrency": {
-      "anthropic": 1,
-      "openai": 1,
-      "google": 1
+      "openrouter": 2,
+      "opencode": 2
     }
   },
 
   // 2) Per-agent tuning
   "agents": {
+    // Orchestrator / main driver — strong general coding model.
     "sisyphus": {
-      "model": "openai/gpt-5.4",
-      "variant": "medium",
-      "reasoningEffort": "medium",
-      "temperature": 0.2
+      "model": "openrouter/z-ai/glm-5.2:free",
+      "temperature": 0.2,
+      "fallback_models": [
+        "openrouter/minimax/minimax-m3:free",
+        "opencode/hy3-free"
+      ]
     },
 
+    // Implementer — agentic edit loop, wants tool-call reliability.
     "hephaestus": {
-      "model": "openai/gpt-5.4-fast",
-      "reasoningEffort": "low",
-      "textVerbosity": "low",
+      "model": "openrouter/minimax/minimax-m3:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openai/gpt-5.4",
-        "openai/gpt-5.2-codex",
-        "openai/gpt-5-codex"
+        "openrouter/z-ai/glm-5.2:free",
+        "openrouter/poolside/laguna-s-2.1:free",
+        "openrouter/minimax/minimax-m2.7:free"
       ],
       "prompt_append": "Keep edits minimal and file-scoped."
     },
 
+    // Planner / reviewer — reasoning-heavy, no writes.
     "prometheus": {
-      "model": "openai/gpt-5.4-mini",
+      "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
       "temperature": 0.1,
+      "fallback_models": [
+        "opencode/nemotron-3-ultra-free",
+        "openrouter/thinkingmachines/inkling:free"
+      ],
       "permission": {
         "edit": "deny",
         "bash": "ask"
@@ -43,39 +52,52 @@
       "prompt_append": "You are a planning/review agent. Do not modify files directly."
     },
 
+    // Analysis / critique — read-only.
     "metis": {
-      "model": "openai/gpt-5.1-codex",
-      "temperature": 0.1,
-      "permission": {
-        "edit": "deny",
-        "bash": "ask"
-      }
-    },
-
-    "explore": {
-      "model": "opencode/gpt-5-nano",
-      "temperature": 0.1,
-      "permission": {
-        "edit": "deny",
-        "bash": "ask"
-      }
-    },
-
-    "oracle": {
-      "model": "openai/gpt-5.2",
+      "model": "openrouter/minimax/minimax-m2.7:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openai/gpt-5.4",
-        "openai/gpt-5.1-codex-max"
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+        "opencode/mimo-v2.5-free"
+      ],
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+
+    // Codebase search — high volume, wants the fastest cheap model.
+    "explore": {
+      "model": "opencode/nemotron-3.5-lightning-free",
+      "temperature": 0.1,
+      "fallback_models": [
+        "openrouter/nvidia/nemotron-3.5-lightning:free",
+        "openrouter/thinkingmachines/inkling-small:free"
+      ],
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+
+    // Hard-question escalation — deepest reasoning available for free.
+    "oracle": {
+      "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "temperature": 0.1,
+      "fallback_models": [
+        "openrouter/z-ai/glm-5.2:free",
+        "openrouter/minimax/minimax-m3:free",
+        "opencode/nemotron-3-ultra-free"
       ]
     },
 
+    // Docs/reference lookup — small and fast is enough.
     "librarian": {
-      "model": "openai/gpt-5.4-mini-fast",
+      "model": "openrouter/thinkingmachines/inkling-small:free",
       "temperature": 0.1,
       "fallback_models": [
-        "openai/gpt-5.3-codex-spark",
-        "openai/gpt-5.3-codex"
+        "openrouter/poolside/laguna-xs-2.1:free",
+        "opencode/nemotron-3.5-lightning-free"
       ]
     }
   },
@@ -83,51 +105,53 @@
   // 3) Category defaults for delegated task routing
   "categories": {
     "deep": {
-      "model": "openai/gpt-5.4",
+      "model": "openrouter/z-ai/glm-5.2:free",
       "fallback_models": [
-        "openai/gpt-5.4-fast",
-        "openai/gpt-5.2"
+        "openrouter/minimax/minimax-m3:free",
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
       ]
     },
     "ultrabrain": {
-      "model": "openai/gpt-5.1-codex-max",
+      "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
       "fallback_models": [
-        "openai/gpt-5.4",
-        "openai/gpt-5.2-codex"
+        "opencode/nemotron-3-ultra-free",
+        "openrouter/z-ai/glm-5.2:free",
+        "openrouter/minimax/minimax-m3:free"
       ]
     },
     "artistry": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openrouter/minimax/minimax-m3:free",
       "fallback_models": [
-        "openai/gpt-5.1-codex",
-        "openai/gpt-5-codex"
+        "openrouter/z-ai/glm-5.2:free",
+        "openrouter/poolside/laguna-s-2.1:free"
       ]
     },
     "writing": {
-      "model": "openai/gpt-5.2",
+      "model": "opencode/hy3-free",
       "fallback_models": [
-        "openai/gpt-5.4-mini"
+        "openrouter/thinkingmachines/inkling:free",
+        "openrouter/google/gemma-4-31b-it:free"
       ]
     },
     "quick": {
-      "model": "opencode/gpt-5-nano",
+      "model": "opencode/nemotron-3.5-lightning-free",
       "fallback_models": [
-        "openai/gpt-5.1-codex-mini",
-        "openai/gpt-5.4-mini-fast"
+        "openrouter/nvidia/nemotron-3.5-lightning:free",
+        "openrouter/poolside/laguna-xs-2.1:free"
       ]
     },
     "unspecified-low": {
-      "model": "openai/gpt-5.4-mini-fast",
+      "model": "opencode/mimo-v2.5-free",
       "fallback_models": [
-        "openai/gpt-5.1-codex-mini",
-        "openai/gpt-5.3-codex-spark"
+        "openrouter/thinkingmachines/inkling-small:free",
+        "openrouter/google/gemma-4-31b-it:free"
       ]
     },
     "unspecified-high": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openrouter/minimax/minimax-m2.7:free",
       "fallback_models": [
-        "openai/gpt-5.3-codex",
-        "openai/gpt-5.4"
+        "openrouter/z-ai/glm-5.2:free",
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
       ]
     }
   }

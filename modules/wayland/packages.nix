@@ -41,6 +41,7 @@ lib.mkIf config.myconfig.features.desktop {
 
     # OCR (region select → clipboard)
     normcap
+    grim
 
     # Clipboard
     wl-clipboard

@@ -1,10 +1,11 @@
 { lib, config, ... }:
 {
   # Pure CLI tools and utilities - suitable for remote development
-  # ~/.npmrc is a read-only Nix store symlink — redirect writes to a writable path.
-  # mkForce overrides the conflicting definition from programs/npm.nix.
+  # Keep the npm user config in a writable location so `npm config set` works
+  # and `prefix` is read as user config, not project config (npm rejects
+  # `prefix` in project config, which is what ~/.npmrc becomes when cwd=$HOME).
   home.sessionVariables = {
-    NPM_CONFIG_USERCONFIG = lib.mkForce "$HOME/.config/npm/npmrc";
+    NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
   };
 
   home.sessionPath = [ "$HOME/.npm/bin" ];

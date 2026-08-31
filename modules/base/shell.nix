@@ -39,7 +39,10 @@
     '';
   };
 
-  programs.npm.enable = true;
+  # programs.npm intentionally not enabled: it writes a read-only ~/.npmrc
+  # containing `prefix`, which npm rejects as project config whenever cwd is
+  # $HOME. nodejs comes from modules/base/packages.nix instead; the npm user
+  # config lives at ~/.config/npm/npmrc (see modules/base/cli-tools.nix).
 
   programs.carapace = {
     enable = true;

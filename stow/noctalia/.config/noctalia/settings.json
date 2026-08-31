@@ -145,11 +145,19 @@
             ],
             "right": [
                 {
+                    "defaultSettings": {
+                        "connectedColor": "primary",
+                        "disconnectedColor": "none",
+                        "refreshInterval": 5000
+                    },
+                    "id": "plugin:cloudflare-warp"
+                },
+                {
                     "hideWhenZero": true,
                     "hideWhenZeroUnread": true,
                     "iconColor": "none",
                     "id": "NotificationHistory",
-                    "showUnreadBadge": false,
+                    "showUnreadBadge": true,
                     "unreadBadgeColor": "primary"
                 },
                 {
@@ -396,7 +404,7 @@
         "avatarImage": "/home/nova/Downloads/wallpaper2.jpg",
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
-        "clockStyle": "analog",
+        "clockStyle": "digital",
         "compactLockScreen": true,
         "dimmerOpacity": 0,
         "enableBlurBehind": false,

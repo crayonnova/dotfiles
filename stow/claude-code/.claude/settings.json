@@ -23,6 +23,11 @@
   },
   "effortLevel": "medium",
   "advisorModel": "opus",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "voiceEnabled": true
 }

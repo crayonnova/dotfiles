@@ -40,6 +40,26 @@
         "type": "github"
       }
     },
+    "little-coder": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788195955,
+        "narHash": "sha256-qNXGRVk1lf5wO20WEuVcJJI7cncaNqCHdNvGp2GlHoM=",
+        "owner": "crayonnova",
+        "repo": "little-coder",
+        "rev": "a475ba43c7641e059441e4ffa3102b3e4fd1a59d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crayonnova",
+        "repo": "little-coder",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -179,6 +199,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "lightpanda": "lightpanda",
+        "little-coder": "little-coder",
         "niri": "niri",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia"

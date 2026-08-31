@@ -19,6 +19,10 @@
       url = "github:crayonnova/lightpanda-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    little-coder = {
+      url = "github:crayonnova/little-coder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +49,7 @@
           modules = [
             ./home.nix
             inputs.lightpanda.homeModules.default
+            inputs.little-coder.homeModules.default
           ]
           ++ modules;
         };

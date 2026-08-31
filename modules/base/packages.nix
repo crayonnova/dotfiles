@@ -58,7 +58,7 @@
       with pkgs;
       [
         xwayland-satellite
-        cosmic-wallpapers
+        # cosmic-wallpapers
         gnome-control-center
         nautilus
         papirus-icon-theme

@@ -45,6 +45,7 @@
         bandwhich
         vencord
         discord
+        authenticator
         # handbrake - TODO: ffmpeg error
       ]
     );

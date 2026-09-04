@@ -16,7 +16,7 @@ in
     ./modules/base/cli-tools.nix
     ./modules/features/dev-tools.nix
     ./modules/features/little-coder.nix
-    ./modules/features/ollama.nix
+    # ./modules/features/ollama.nix
     ./modules/features/desktop.nix
     ./modules/features/fonts.nix
     ./modules/system/codespace.nix

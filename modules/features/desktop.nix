@@ -47,6 +47,7 @@
         discord
         authenticator
         # handbrake - TODO: ffmpeg error
+        blanket
       ]
     );
 

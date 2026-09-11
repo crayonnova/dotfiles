@@ -118,6 +118,7 @@
       ollama
       awscli2
       cloudflared
+      navi
       # lightpanda
     ];
 

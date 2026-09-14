@@ -445,6 +445,16 @@ window-rule {
     // }
 }
 
+// Disposable one-shot terminal spawned by scripts/fuzzel-run.sh (Mod+Return).
+window-rule {
+    match app-id=r#"^scratchterm$"#
+
+    open-floating true
+    open-focused true
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.5; }
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -520,6 +530,7 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Shift+G hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
     Mod+Shift+Space hotkey-overlay-title="Search Nix/Home packages" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-home-search.sh\""; }
+    Mod+Return hotkey-overlay-title="Run a command in a disposable terminal" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-run.sh\""; }
 
     Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }

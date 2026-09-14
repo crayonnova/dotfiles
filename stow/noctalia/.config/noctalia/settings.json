@@ -454,7 +454,7 @@
         "shadowOffsetX": 2,
         "shadowOffsetY": 3,
         "showChangelogOnStartup": false,
-        "showHibernateOnLockScreen": false,
+        "showHibernateOnLockScreen": true,
         "showScreenCorners": false,
         "showSessionButtonsOnLockScreen": true,
         "smoothScrollEnabled": true,
@@ -567,7 +567,8 @@
         "enabledTypes": [
             0,
             1,
-            2
+            2,
+            3
         ],
         "location": "top_right",
         "monitors": [

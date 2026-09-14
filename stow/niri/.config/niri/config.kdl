@@ -183,7 +183,7 @@ layout {
         on
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -523,6 +523,10 @@ binds {
 
     Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }
+    // edot is a bash function in ~/.bashrc, not a binary, so it needs an
+    // interactive bash (-i) to be defined; -l/sh would hit the non-interactive
+    // guard at the top of ~/.bashrc and find nothing.
+    Super+D hotkey-overlay-title="Edit dotfiles" { spawn "bash" "-ic" "edot"; }
     Mod+Shift+T hotkey-overlay-title="OCR Region" { spawn "normcap"; }
     Super+B hotkey-overlay-title="Open Brave Browser" { spawn "chromium-browser"; }
     Super+M hotkey-overlay-title="Open Spotify" { spawn "spotify"; }

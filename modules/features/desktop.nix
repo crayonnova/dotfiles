@@ -46,6 +46,9 @@
         vencord
         discord
         authenticator
+        ffmpeg
+        slurp
+        wf-recorder
         # handbrake - TODO: ffmpeg error
         blanket
       ]

@@ -45,6 +45,7 @@ in
     features = {
       devtools = mkEnableOption "development tools and configurations";
       desktop = mkEnableOption "desktop applications and GUI tools";
+      hyprland = mkEnableOption "Hyprland config (compositor itself comes from NixOS)";
       software = mkEnableOption "optional end-user applications";
       fonts = mkEnableOption "font packages";
     };

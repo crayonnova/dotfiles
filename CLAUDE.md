@@ -31,6 +31,7 @@ stow/               # Raw dotfiles, mirroring ~/ paths for Home Manager symlinks
 | `devtools` | Dev language toolchains + LSPs |
 | `software` | Spotify, Chrome, Obsidian, Brave, Discord, Steam, OpenCode, claude-code |
 | `fonts` | JetBrains Mono Nerd, Cascadia Code, Inter, Noto |
+| `hyprland` | Hyprland config symlink (the compositor itself comes from NixOS) |
 
 `profiles/desktop.nix` sets all four to `true`. `profiles/cli-dev.nix` sets only `devtools` and `fonts`.
 
@@ -50,6 +51,7 @@ modules/system/
   codespace.nix    # Codespaces-specific overrides
 modules/wayland/
   default.nix      # Niri homeModule import + niri config symlink
+  hyprland.nix     # Hyprland config symlink, gated on features.hyprland
   packages.nix     # Wayland packages: terminals (alacritty/kitty/ghostty), fuzzel,
                    # swaylock/swayidle/swaybg, mako, grim/slurp, wl-clipboard
 ```
@@ -66,6 +68,7 @@ modules/wayland/
 | `kitty/` | `~/.config/kitty/` |
 | `fuzzel/` | `~/.config/fuzzel/` |
 | `niri/` | `~/.config/niri/` |
+| `hypr/` | `~/.config/hypr/` |
 | `noctalia/` | `~/.config/noctalia/` |
 | `starship/` | `~/.config/starship/` |
 | `opencode/` | `~/.config/opencode/` |

@@ -9,6 +9,7 @@
   imports = [
     inputs.niri.homeModules.niri
     ./packages.nix
+    ./hyprland.nix
   ];
 
   config = lib.mkIf config.myconfig.features.desktop {

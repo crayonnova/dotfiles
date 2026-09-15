@@ -1,206 +1,225 @@
-# Noctalia v5 config, translated from the v4 settings.json in this directory.
-# v5 is a C++ rewrite with a TOML config; the old JSON files are ignored by it
-# and are kept here only as the record of what v4 was set to.
-#
-# Anything not listed here stays at the v5 default. See:
-#   /tmp/noctv5/example.toml upstream, or https://docs.noctalia.dev/noctalia/configuration/
-# Most keys hot-reload via inotify, so editing this file applies immediately.
+[backdrop]
+blur_intensity = 0.0
+enabled = true
+tint_intensity = 0.0
+
+[bar]
+order = [ "main" ]
+
+    [bar.main]
+    background_opacity = 0.0
+    capsule = false
+    center = [ "taskbar" ]
+    end = [ "notifications", "warp", "tray", "group:g3", "group:g1", "group:g4", "group:g2" ]
+    margin_edge = 0
+    margin_ends = 0
+    padding = 9
+    position = "bottom"
+    radius = 0
+    start = [ "group:g5", "media" ]
+    widget_spacing = 7
+
+        [[bar.main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "network", "bluetooth" ]
+        opacity = 0.40000000596046448
+        padding = 8.0
+        radius = 23.0
+        widget_spacing = 9
+
+        [[bar.main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "battery" ]
+        opacity = 0.40000000596046448
+        padding = 11.0
+        widget_spacing = 9
+
+        [[bar.main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g3"
+        members = [ "volume", "brightness" ]
+        opacity = 0.40000000596046448
+        padding = 6.0
+
+        [[bar.main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g4"
+        members = [ "date", "clock" ]
+        opacity = 0.40000000596046448
+        padding = 8.0
+
+        [[bar.main.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface"
+        id = "g5"
+        members = [ "sysmon", "temp", "ram" ]
+        opacity = 0.88999998569488525
+        padding = 8.0
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+icon_size = 27
+magnification_scale = 1.2500000037252903
+main_axis_padding = 3
+position = "top"
+show_dots = true
+
+[lockscreen_widgets]
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 1564.0
+    cy = 1190.0
+    output = "DP-1"
+    placement_height = 1309.0
+    placement_width = 3127.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 768.0
+    cy = 841.0
+    output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1536.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[plugins]
+auto_update = "official"
+enabled = [ "levi/warp", "weinguyen/opencode-companion" ]
 
 [shell]
-font_family           = "sans-serif"     # v4 ui.fontDefault = "Sans Serif"
-time_format           = "{:%I:%M %p}"    # v4 use12hourFormat = true
-date_format           = "%A, %x"
-telemetry_enabled     = false
-settings_show_advanced = true
-show_location         = true
-# v4 general.avatarImage
-avatar_path           = "/home/nova/Downloads/wallpaper2.jpg"
+external_ip_enabled = true
+launch_apps_as_systemd_services = true
+password_style = "random"
+polkit_agent = true
+screen_time_enabled = true
 
-[shell.animation]
-enabled = true                           # v4 general.animationDisabled = false
-speed   = 1.0
+    [shell.animation]
+    enabled = false
+    speed = 0.10000000149011612
 
-[shell.shadow]
-direction = "down_right"                 # v4 general.shadowDirection = "bottom_right"
-
-[shell.panel]
-# v4 ui.panelsAttachedToBar = false -> everything floats
-transparency_mode        = "solid"
-launcher_placement       = "floating"
-clipboard_placement      = "floating"
-control_center_placement = "floating"
-wallpaper_placement      = "floating"
-session_placement        = "floating"
-# v4 general.enableShadows = false
-shadow                   = false
-
-# ── Bar ───────────────────────────────────────────────────────────────────────
-# v4 barType = "framed" with backgroundOpacity 0 + showCapsule -> a transparent
-# bar whose widgets carry their own capsule background.
-
-[bar.main]
-position           = "bottom"
-background_opacity = 0.0
-radius             = 12                  # v4 frameRadius
-margin_edge        = 4                   # v4 marginVertical
-margin_ends        = 4                   # v4 marginHorizontal
-padding            = 5                   # v4 contentPadding
-widget_spacing     = 6
-font_scale         = 0.99
-shadow             = false
-capsule            = true
-capsule_opacity    = 0.89
-reserve_space      = true                # v4 enableExclusionZoneInset
-
-# v4 widget layout. Three plugin widgets have no v5 equivalent yet and are
-# dropped: air-quality, cloudflare-warp, port-monitor (see notes at bottom).
-start  = ["network", "bluetooth", "media"]
-center = ["workspaces", "taskbar"]
-end    = ["notifications", "tray", "sysmon", "volume", "brightness", "battery", "clock"]
-
-# ── Bar widgets ───────────────────────────────────────────────────────────────
-# v4's Workspace widget drew app icons inside the pills (showApplications).
-# v5 split that in two: `workspaces` switches, `taskbar` draws window icons.
-
-[widget.workspaces]
-style        = "regular"
-label_source = "id"                      # v4 labelMode = "index"
-max_label_chars = 2                      # v4 characterCount
-show_labels  = true
-labels_only_when_occupied = true         # v4 showLabelsOnlyWhenOccupied
-hide_when_empty = true                   # v4 hideUnoccupied
-pill_scale   = 0.6                       # v4 pillSize
-focused_color  = "primary"
-occupied_color = "secondary"
-empty_color    = "secondary"
-focused_output_only = false              # v4 followFocusedScreen = false
-
-# The v4 "show applications in workspace" behaviour.
-[widget.taskbar]
-only_active_workspace = true             # icons for windows on the active workspace only
-group_by_workspace    = false            # flat strip; only one workspace is listed anyway
-icon_scale            = 1.0              # v4 iconScale
-inactive_opacity      = 1.0              # v4 unfocusedIconsOpacity
-show_active_indicator = true             # v4 showBadge
-active_indicator_color = "primary"
-show_window_title     = false            # icons only
-show_all_outputs      = false
-
-# ── Theme ─────────────────────────────────────────────────────────────────────
+    [shell.panel]
+    floating_layer = "top"
+    open_near_click_control_center = true
+    open_near_click_wallpaper = true
+    session_position = "center"
+    wallpaper_placement = "centered"
 
 [theme]
-mode    = "dark"                         # v4 colorSchemes.darkMode = true
-source  = "builtin"                      # v4 useWallpaperColors = false
-builtin = "Tokyo-Night"                  # v4 predefinedScheme = "Tokyo Night"
-pure_black_dark = false
+builtin = "Tokyo-Night"
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-content"
 
-[theme.templates]
-# Regenerates ~/.config/niri/noctalia.kdl (focus ring / border / shadow colors),
-# which config.kdl already pulls in via `include "./noctalia.kdl"`.
-enable_builtin_templates = true
-builtin_ids = ["niri"]
+[wallpaper.default]
+path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 
-# ── Wallpaper ─────────────────────────────────────────────────────────────────
+[wallpaper.last]
+path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 
-[wallpaper]
-enabled             = true
-directory           = "/home/nova/Pictures/Wallpapers"
-fill_mode           = "crop"
-fill_color          = "#000000"
-transition          = ["fade"]
-transition_duration = 1500
-edge_smoothness     = 0.05
-transition_on_startup = false            # v4 skipStartupTransition = false
+[wallpaper.monitors.DP-1]
+path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 
-[wallpaper.automation]
-enabled          = false                 # v4 automationEnabled = false
-interval_seconds = 300                   # v4 randomIntervalSec
-order            = "random"
+[wallpaper.monitors.eDP-1]
+path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 
-# ── Notifications ─────────────────────────────────────────────────────────────
+[widget.clock]
+format = "{:%I:%M %p}"
 
-[notification]
-enable_daemon             = true
-keep_dismissed_in_history = false        # v4 clearDismissed = true
-layer                     = "overlay"    # v4 overlayLayer = true
-background_opacity        = 1.0
+[widget.media]
+hide_when_no_media = true
 
-# v4 notifications.sounds.excludedApps, one filter block per app.
-[notification.filter.discord]
-match = "discord"
-play_sound = false
-[notification.filter.firefox]
-match = "firefox"
-play_sound = false
-[notification.filter.chrome]
-match = "chrome"
-play_sound = false
-[notification.filter.chromium]
-match = "chromium"
-play_sound = false
-[notification.filter.edge]
-match = "edge"
-play_sound = false
+[widget.network]
+show_label = false
 
-# ── OSD ───────────────────────────────────────────────────────────────────────
+[widget.notifications]
+hide_when_no_unread = true
 
-[osd]
-position           = "top_right"
-background_opacity = 1.0
+[widget.sysmon]
+label_show_units = false
 
-# ── Lock screen ───────────────────────────────────────────────────────────────
+[widget.taskbar]
+active_indicator_color = "surface_variant"
+capsule_padding = 0
+capsule_radius = "auto"
+focused_output_only = true
+group_by_workspace = true
+hide_empty_workspaces = true
+icon_scale = 2.0
+inactive_opacity = 0.78000000000000003
+only_active_workspace = false
 
-[lockscreen]
-enabled        = true
-blur_intensity = 0.91                    # v4 general.lockScreenBlur
-tint_intensity = 0.71                    # v4 general.lockScreenTint
+[widget.warp]
+enable_scroll = false
+type = "levi/warp:warp"
 
-# ── Weather / location ────────────────────────────────────────────────────────
-
-[weather]
-enabled = true
-unit    = "celsius"                      # v4 useFahrenheit = false
-effects = true
-
-[location]
-auto_locate = false
-address     = "Bangkok"
-
-# ── Audio / brightness / night light ──────────────────────────────────────────
-
-[audio]
-enable_overdrive = false
-enable_sounds    = true                  # v4 volumeFeedback + sounds.enabled
-sound_volume     = 0.5
-
-[brightness]
-enable_ddcutil = false                   # v4 enableDdcSupport = false
-
-[nightlight]
-enabled           = false
-force             = false
-temperature_day   = 6500
-temperature_night = 4000
-
-# ── System monitor ────────────────────────────────────────────────────────────
-
-[system.monitor]
-enabled = true
-
-# ── Idle ──────────────────────────────────────────────────────────────────────
-# v4 had screenOffTimeout 600 firing before lockTimeout 660, plus suspend at 1800.
-
-[idle.behavior.screen-off]
-enabled = true
-timeout = 600
-action  = "screen_off"
-
-[idle.behavior.lock]
-enabled = true
-timeout = 660
-action  = "lock"
-
-[idle.behavior.suspend]
-enabled = true
-timeout = 1800
-action  = "suspend"
+[widget.workspaces]
+anchor = true
+enabled = false
+labels_only_when_occupied = true
+max_label_chars = 19
+scale = 1.3500000000000001
+style = "focus_hint"

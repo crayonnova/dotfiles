@@ -306,7 +306,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // Noctalia is started directly by niri at session startup.
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 // spawn-at-startup "brave"
 spawn-at-startup "alacritty"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
@@ -526,13 +526,13 @@ binds {
     Mod+D hotkey-overlay-title="Open a Terminal: Alacritty" {
         spawn-sh "pid=$(niri msg --json focused-window | jq -r '.pid // empty'); cwd=$HOME; if [ -n \"$pid\" ]; then for child in $(pgrep -P \"$pid\"); do c=$(readlink /proc/$child/cwd 2>/dev/null) && [ -n \"$c\" ] && cwd=$c && break; done; fi; exec alacritty --working-directory \"$cwd\""
     }
-    Mod+F4 hotkey-overlay-title="Session Menu" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+F4 hotkey-overlay-title="Session Menu" { spawn-sh "noctalia msg panel-toggle session"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Shift+G hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
     Mod+Shift+Space hotkey-overlay-title="Search Nix/Home packages" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-home-search.sh\""; }
     Mod+Return hotkey-overlay-title="Run a command in a disposable terminal" { spawn-sh "bash \"$HOME/dotfiles/scripts/fuzzel-run.sh\""; }
 
-    Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Super+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia msg session lock"; }
     Super+E hotkey-overlay-title="File Explorer" { spawn-sh "xdg-open \"$HOME\""; }
     // edot is a bash function in ~/.bashrc, not a binary, so it needs an
     // interactive bash (-i) to be defined; -l/sh would hit the non-interactive

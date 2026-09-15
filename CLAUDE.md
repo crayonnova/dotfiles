@@ -78,7 +78,7 @@ Home Manager links these via `mkOutOfStoreSymlink` so edits in `stow/` take effe
 - `nixpkgs` — nixos-unstable
 - `home-manager` — follows nixpkgs
 - `niri` — sodiboo/niri-flake
-- `noctalia` — noctalia-dev/noctalia-shell
+- `noctalia` — noctalia-dev/noctalia (v5+; must not follow nixpkgs, or the cachix cache misses)
 
 ## Apply config
 

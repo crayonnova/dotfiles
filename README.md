@@ -116,7 +116,7 @@ hhr   # switch, then log out
 - `nixpkgs` — nixos-unstable
 - `home-manager` — follows nixpkgs
 - `niri` — `sodiboo/niri-flake`
-- `noctalia` — `noctalia-dev/noctalia` (`legacy-v4` branch)
+- `noctalia` — `noctalia-dev/noctalia` (v5+, default branch). Intentionally does **not** follow `nixpkgs`: overriding inputs changes the derivation hash and misses the `noctalia.cachix.org` binary cache, forcing a local C++ build.
 - `lightpanda` — headless browser + CDP server; provides an overlay and a `services.lightpanda` user service on `127.0.0.1:9222`
 
 > **Note:** `lightpanda` is currently pinned to a local path (`path:/home/nova/lightpanda-nix`), so the flake will not evaluate on another machine until that input points at `github:crayonnova/lightpanda-nix`.

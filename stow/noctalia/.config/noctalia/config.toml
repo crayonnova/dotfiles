@@ -1,0 +1,206 @@
+# Noctalia v5 config, translated from the v4 settings.json in this directory.
+# v5 is a C++ rewrite with a TOML config; the old JSON files are ignored by it
+# and are kept here only as the record of what v4 was set to.
+#
+# Anything not listed here stays at the v5 default. See:
+#   /tmp/noctv5/example.toml upstream, or https://docs.noctalia.dev/noctalia/configuration/
+# Most keys hot-reload via inotify, so editing this file applies immediately.
+
+[shell]
+font_family           = "sans-serif"     # v4 ui.fontDefault = "Sans Serif"
+time_format           = "{:%I:%M %p}"    # v4 use12hourFormat = true
+date_format           = "%A, %x"
+telemetry_enabled     = false
+settings_show_advanced = true
+show_location         = true
+# v4 general.avatarImage
+avatar_path           = "/home/nova/Downloads/wallpaper2.jpg"
+
+[shell.animation]
+enabled = true                           # v4 general.animationDisabled = false
+speed   = 1.0
+
+[shell.shadow]
+direction = "down_right"                 # v4 general.shadowDirection = "bottom_right"
+
+[shell.panel]
+# v4 ui.panelsAttachedToBar = false -> everything floats
+transparency_mode        = "solid"
+launcher_placement       = "floating"
+clipboard_placement      = "floating"
+control_center_placement = "floating"
+wallpaper_placement      = "floating"
+session_placement        = "floating"
+# v4 general.enableShadows = false
+shadow                   = false
+
+# ── Bar ───────────────────────────────────────────────────────────────────────
+# v4 barType = "framed" with backgroundOpacity 0 + showCapsule -> a transparent
+# bar whose widgets carry their own capsule background.
+
+[bar.main]
+position           = "bottom"
+background_opacity = 0.0
+radius             = 12                  # v4 frameRadius
+margin_edge        = 4                   # v4 marginVertical
+margin_ends        = 4                   # v4 marginHorizontal
+padding            = 5                   # v4 contentPadding
+widget_spacing     = 6
+font_scale         = 0.99
+shadow             = false
+capsule            = true
+capsule_opacity    = 0.89
+reserve_space      = true                # v4 enableExclusionZoneInset
+
+# v4 widget layout. Three plugin widgets have no v5 equivalent yet and are
+# dropped: air-quality, cloudflare-warp, port-monitor (see notes at bottom).
+start  = ["network", "bluetooth", "media"]
+center = ["workspaces", "taskbar"]
+end    = ["notifications", "tray", "sysmon", "volume", "brightness", "battery", "clock"]
+
+# ── Bar widgets ───────────────────────────────────────────────────────────────
+# v4's Workspace widget drew app icons inside the pills (showApplications).
+# v5 split that in two: `workspaces` switches, `taskbar` draws window icons.
+
+[widget.workspaces]
+style        = "regular"
+label_source = "id"                      # v4 labelMode = "index"
+max_label_chars = 2                      # v4 characterCount
+show_labels  = true
+labels_only_when_occupied = true         # v4 showLabelsOnlyWhenOccupied
+hide_when_empty = true                   # v4 hideUnoccupied
+pill_scale   = 0.6                       # v4 pillSize
+focused_color  = "primary"
+occupied_color = "secondary"
+empty_color    = "secondary"
+focused_output_only = false              # v4 followFocusedScreen = false
+
+# The v4 "show applications in workspace" behaviour.
+[widget.taskbar]
+only_active_workspace = true             # icons for windows on the active workspace only
+group_by_workspace    = false            # flat strip; only one workspace is listed anyway
+icon_scale            = 1.0              # v4 iconScale
+inactive_opacity      = 1.0              # v4 unfocusedIconsOpacity
+show_active_indicator = true             # v4 showBadge
+active_indicator_color = "primary"
+show_window_title     = false            # icons only
+show_all_outputs      = false
+
+# ── Theme ─────────────────────────────────────────────────────────────────────
+
+[theme]
+mode    = "dark"                         # v4 colorSchemes.darkMode = true
+source  = "builtin"                      # v4 useWallpaperColors = false
+builtin = "Tokyo-Night"                  # v4 predefinedScheme = "Tokyo Night"
+pure_black_dark = false
+
+[theme.templates]
+# Regenerates ~/.config/niri/noctalia.kdl (focus ring / border / shadow colors),
+# which config.kdl already pulls in via `include "./noctalia.kdl"`.
+enable_builtin_templates = true
+builtin_ids = ["niri"]
+
+# ── Wallpaper ─────────────────────────────────────────────────────────────────
+
+[wallpaper]
+enabled             = true
+directory           = "/home/nova/Pictures/Wallpapers"
+fill_mode           = "crop"
+fill_color          = "#000000"
+transition          = ["fade"]
+transition_duration = 1500
+edge_smoothness     = 0.05
+transition_on_startup = false            # v4 skipStartupTransition = false
+
+[wallpaper.automation]
+enabled          = false                 # v4 automationEnabled = false
+interval_seconds = 300                   # v4 randomIntervalSec
+order            = "random"
+
+# ── Notifications ─────────────────────────────────────────────────────────────
+
+[notification]
+enable_daemon             = true
+keep_dismissed_in_history = false        # v4 clearDismissed = true
+layer                     = "overlay"    # v4 overlayLayer = true
+background_opacity        = 1.0
+
+# v4 notifications.sounds.excludedApps, one filter block per app.
+[notification.filter.discord]
+match = "discord"
+play_sound = false
+[notification.filter.firefox]
+match = "firefox"
+play_sound = false
+[notification.filter.chrome]
+match = "chrome"
+play_sound = false
+[notification.filter.chromium]
+match = "chromium"
+play_sound = false
+[notification.filter.edge]
+match = "edge"
+play_sound = false
+
+# ── OSD ───────────────────────────────────────────────────────────────────────
+
+[osd]
+position           = "top_right"
+background_opacity = 1.0
+
+# ── Lock screen ───────────────────────────────────────────────────────────────
+
+[lockscreen]
+enabled        = true
+blur_intensity = 0.91                    # v4 general.lockScreenBlur
+tint_intensity = 0.71                    # v4 general.lockScreenTint
+
+# ── Weather / location ────────────────────────────────────────────────────────
+
+[weather]
+enabled = true
+unit    = "celsius"                      # v4 useFahrenheit = false
+effects = true
+
+[location]
+auto_locate = false
+address     = "Bangkok"
+
+# ── Audio / brightness / night light ──────────────────────────────────────────
+
+[audio]
+enable_overdrive = false
+enable_sounds    = true                  # v4 volumeFeedback + sounds.enabled
+sound_volume     = 0.5
+
+[brightness]
+enable_ddcutil = false                   # v4 enableDdcSupport = false
+
+[nightlight]
+enabled           = false
+force             = false
+temperature_day   = 6500
+temperature_night = 4000
+
+# ── System monitor ────────────────────────────────────────────────────────────
+
+[system.monitor]
+enabled = true
+
+# ── Idle ──────────────────────────────────────────────────────────────────────
+# v4 had screenOffTimeout 600 firing before lockTimeout 660, plus suspend at 1800.
+
+[idle.behavior.screen-off]
+enabled = true
+timeout = 600
+action  = "screen_off"
+
+[idle.behavior.lock]
+enabled = true
+timeout = 660
+action  = "lock"
+
+[idle.behavior.suspend]
+enabled = true
+timeout = 1800
+action  = "suspend"

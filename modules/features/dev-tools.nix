@@ -27,6 +27,7 @@
         imagemagick
         rust-analyzer
         lua-language-server
+        vscode-js-debug
         (writeShellScriptBin "codelldb" ''
           exec ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb "$@"
         '')

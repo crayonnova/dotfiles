@@ -183,7 +183,7 @@ layout {
         on
 
         // How many logical pixels the ring extends out from the windows.
-        width 2
+        width 4
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -348,7 +348,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
     workspace-switch {
-        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+        spring damping-ratio=1.0 stiffness=523 epsilon=0.0001
     }
 
     window-open {
@@ -360,19 +360,10 @@ animations {
         curve "ease-out-quad"
     }
     horizontal-view-movement {
-        spring damping-ratio=0.85 stiffness=423 epsilon=0.00001
+        spring damping-ratio=0.99 stiffness=523 epsilon=0.00001
     }
     window-movement {
-        spring damping-ratio=0.75 stiffness=423 epsilon=0.00001
-    }
-    window-resize {
-        custom-shader r"
-            vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
-                vec3 coords_tex_next = niri_geo_to_tex_next * coords_curr_geo;
-                vec4 color = texture2D(niri_tex_next, coords_tex_next.st);
-                return color;
-            }
-        "
+        spring damping-ratio=0.99 stiffness=523 epsilon=0.00001
     }
     config-notification-open-close {
         spring damping-ratio=0.95 stiffness=923 epsilon=0.02
@@ -382,7 +373,7 @@ animations {
         curve "ease-out-quad"
     }
     overview-open-close {
-        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
 }
 

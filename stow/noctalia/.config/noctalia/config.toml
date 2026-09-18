@@ -13,20 +13,18 @@ order = [ "main" ]
     end = [ "notifications", "warp", "tray", "group:g3", "group:g1", "group:g4", "group:g2" ]
     margin_edge = 0
     margin_ends = 0
-    padding = 9
     position = "bottom"
     radius = 0
-    start = [ "group:g5", "media" ]
     widget_spacing = 7
 
         [[bar.main.capsule_group]]
         accordion = false
-        accordion_direction = "end"
+        accordion_direction = "start"
         enabled = true
         fill = "surface_variant"
         id = "g1"
         members = [ "network", "bluetooth" ]
-        opacity = 0.40000000596046448
+        opacity = 0.89999997615814209
         padding = 8.0
         radius = 23.0
         widget_spacing = 9
@@ -38,7 +36,7 @@ order = [ "main" ]
         fill = "surface_variant"
         id = "g2"
         members = [ "battery" ]
-        opacity = 0.40000000596046448
+        opacity = 0.89999997615814209
         padding = 11.0
         widget_spacing = 9
 
@@ -49,7 +47,7 @@ order = [ "main" ]
         fill = "surface_variant"
         id = "g3"
         members = [ "volume", "brightness" ]
-        opacity = 0.40000000596046448
+        opacity = 0.89999997615814209
         padding = 6.0
 
         [[bar.main.capsule_group]]
@@ -58,8 +56,8 @@ order = [ "main" ]
         enabled = true
         fill = "surface_variant"
         id = "g4"
-        members = [ "date", "clock" ]
-        opacity = 0.40000000596046448
+        members = [ "clock", "date" ]
+        opacity = 0.89999997615814209
         padding = 8.0
 
         [[bar.main.capsule_group]]
@@ -83,6 +81,7 @@ position = "top"
 show_dots = true
 
 [lockscreen_widgets]
+enabled = false
 schema_version = 2
 widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
 
@@ -94,7 +93,7 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
     [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 1564.0
+    cx = 1564.0001220703125
     cy = 1190.0
     output = "DP-1"
     placement_height = 1309.0
@@ -145,6 +144,14 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
         show_unlock_hint = true
         show_weather = true
 
+[nightlight]
+enabled = true
+force = true
+temperature_day = 4900
+
+[osd.kinds]
+nightlight = false
+
 [plugins]
 auto_update = "official"
 enabled = [ "levi/warp", "weinguyen/opencode-companion" ]
@@ -186,19 +193,35 @@ path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 [wallpaper.monitors.eDP-1]
 path = "/home/nova/Pictures/Wallpapers/wallhaven_3zmr6y.jpg"
 
+[widget.battery]
+font_family = "Cascadia Code"
+
+[widget.bluetooth]
+show_label = true
+
+[widget.brightness]
+font_family = "Cascadia Code"
+
 [widget.clock]
-format = "{:%I:%M %p}"
+color = "primary"
+font_family = "Cascadia Code"
+format = "{:%I:%M %p},"
+
+[widget.date]
+color = "primary"
+icon_color = "primary"
 
 [widget.media]
 hide_when_no_media = true
 
-[widget.network]
-show_label = false
-
 [widget.notifications]
 hide_when_no_unread = true
 
+[widget.ram]
+font_family = "Cascadia Code"
+
 [widget.sysmon]
+font_family = "Cascadia Code"
 label_show_units = false
 
 [widget.taskbar]
@@ -209,11 +232,24 @@ focused_output_only = true
 group_by_workspace = true
 hide_empty_workspaces = true
 icon_scale = 2.0
-inactive_opacity = 0.78000000000000003
-only_active_workspace = false
+inactive_opacity = 1.0
+
+[widget.temp]
+font_family = "Cascadia Code"
+show_glyph = false
+
+[widget.tray]
+capsule = true
+scale = 1.1500000000000001
+
+[widget.volume]
+font_family = "Cascadia Code"
 
 [widget.warp]
+capsule = true
+capsule_opacity = 0.44
 enable_scroll = false
+scale = 1.3
 type = "levi/warp:warp"
 
 [widget.workspaces]

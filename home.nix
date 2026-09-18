@@ -19,6 +19,7 @@ in
     # ./modules/features/ollama.nix
     ./modules/features/desktop.nix
     ./modules/features/fonts.nix
+    ./modules/features/mimeapps.nix
     ./modules/system/codespace.nix
     ./modules/wayland
     ./modules/features/noctalia.nix

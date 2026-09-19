@@ -1,4 +1,9 @@
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   imports = [ inputs.noctalia.homeModules.default ];
 
@@ -6,6 +11,9 @@
     # v5 renamed the option from `programs.noctalia-shell`.
     programs.noctalia = {
       enable = true;
+      systemd = {
+        enable = true;
+      };
 
       # Left empty on purpose. Setting `settings` makes the module write
       # ~/.config/noctalia/config.toml from the store, which is read-only and

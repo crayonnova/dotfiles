@@ -306,7 +306,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // Noctalia is started directly by niri at session startup.
-spawn-at-startup "noctalia"
+// spawn-at-startup "noctalia"
 // spawn-at-startup "brave"
 spawn-at-startup "alacritty"
 spawn-sh-at-startup "wl-paste --watch cliphist store"

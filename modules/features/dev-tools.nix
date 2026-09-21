@@ -120,6 +120,8 @@
       awscli2
       cloudflared
       navi
+      tldr
+      nix-output-monitor
       # lightpanda
     ];
 

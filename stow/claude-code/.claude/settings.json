@@ -5,7 +5,9 @@
   "model": "opus",
   "enabledPlugins": {
     "lua-lsp@claude-plugins-official": true,
-    "understand-anything@understand-anything": true
+    "understand-anything@understand-anything": true,
+    "typesafe@typesafe-ai": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "understand-anything": {
@@ -25,10 +27,17 @@
         "source": "git",
         "url": "git@github.com:kepano/obsidian-skills.git"
       }
+    },
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
+      }
     }
   },
   "effortLevel": "medium",
   "advisorModel": "opus",
+  "awaySummaryEnabled": false,
   "voice": {
     "enabled": true,
     "mode": "hold"

@@ -33,6 +33,12 @@
         "source": "github",
         "repo": "typesafe-ai/skills"
       }
+    },
+    "lightpanda": {
+      "source": {
+        "source": "github",
+        "repo": "lightpanda-io/agent-skill"
+      }
     }
   },
   "effortLevel": "medium",

@@ -7,7 +7,7 @@
 {
   config = lib.mkIf config.myconfig.features.devtools {
     # Auto-start the Lightpanda CDP server on 127.0.0.1:9222 as a user service.
-    services.lightpanda.enable = false;
+    services.lightpanda.enable = true;
 
     # Development-specific tools and configurations
     programs.zed-editor = {
@@ -122,7 +122,8 @@
       navi
       tldr
       nix-output-monitor
-      # lightpanda
+      lightpanda
+      whois
     ];
 
     home.sessionVariables = {

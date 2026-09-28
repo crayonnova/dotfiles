@@ -8,6 +8,8 @@ return {
       "tsx",
       "lua",
       "nix",
+      "go",
+      "gomod",
       "css",
       "latex",
       "scss",

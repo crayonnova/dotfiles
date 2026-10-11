@@ -51,6 +51,7 @@
         wf-recorder
         # handbrake - TODO: ffmpeg error
         blanket
+        gnome-sound-recorder
       ]
     );
 

@@ -110,6 +110,15 @@
 
     programs.herdr.enable = true;
 
+    programs.yazi = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+
+    home.file.".config/yazi" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/yazi/.config/yazi";
+    };
+
     home.file.".config/.bunfig.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/bun/.config/.bunfig.toml";
     };

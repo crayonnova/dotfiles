@@ -17,6 +17,8 @@
       enableBashIntegration = false;
     };
 
+    programs.yt-dlp.enable = true;
+
     home.file.".wezterm.lua" = lib.mkIf config.programs.wezterm.enable {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/wezterm/.wezterm.lua";
     };

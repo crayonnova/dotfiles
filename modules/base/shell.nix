@@ -54,6 +54,10 @@
     enableBashIntegration = true;
   };
 
+  home.file.".config/atuin/config.toml" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/atuin/.config/atuin/config.toml";
+  };
+
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;

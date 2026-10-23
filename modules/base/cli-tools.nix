@@ -43,4 +43,6 @@
   home.file.".tmux.conf" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/stow/tmux/.tmux.conf";
   };
+
+  programs.pi-coding-agent.enable = true;
 }

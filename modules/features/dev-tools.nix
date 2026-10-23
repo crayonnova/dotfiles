@@ -113,6 +113,7 @@
     programs.yazi = {
       enable = true;
       enableBashIntegration = true;
+      shellWrapperName = "y";
     };
 
     home.file.".config/yazi" = {
@@ -125,7 +126,7 @@
 
     home.packages = with pkgs; [
       vscode-extensions.vadimcn.vscode-lldb
-      ollama
+      ollama-vulkan
       awscli2
       cloudflared
       navi
@@ -133,6 +134,7 @@
       nix-output-monitor
       lightpanda
       whois
+      graphify
     ];
 
     home.sessionVariables = {

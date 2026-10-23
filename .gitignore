@@ -4,3 +4,4 @@
 .claude
 !stow/claude-code/.claude/
 .aider*
+graphify-out/
